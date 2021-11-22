@@ -26,6 +26,20 @@ class Shop extends CI_Controller {
         $this->load->view('templates/font/footer');
     }
 
+    public function checkout_page(){
+        $data['page_title'] = "Checkout - ".self::SITE_NAME;
+        $this->load->view('templates/font/header');
+        $this->load->view('shop/checkout_page');
+        $this->load->view('templates/font/footer');
+    }
+
+    public function tracking_page() {
+        $data['page_title'] = "Suivie de commande - ".self::SITE_NAME;
+        $this->load->view('templates/font/header');
+        $this->load->view('shop/tracking_page');
+        $this->load->view('templates/font/footer');
+    }
+
 
 
 }

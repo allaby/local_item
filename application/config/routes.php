@@ -56,3 +56,8 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['shoppage'] = 'shop';
 $route['mycart'] = 'shop/cart_page';
+
+$route['checkout'] = 'shop/checkout_page';
+$route['tracking'] = 'shop/tracking_page';
+
+$route['mayaccount/dashboard'] = 'customer/dashboard';

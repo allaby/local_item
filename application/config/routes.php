@@ -54,10 +54,14 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 
-$route['shoppage'] = 'shop';
+$route['shop/(:num)'] = 'shop';
+
 $route['mycart'] = 'shop/cart_page';
 
 $route['checkout'] = 'shop/checkout_page';
 $route['tracking'] = 'shop/tracking_page';
 
-$route['mayaccount/dashboard'] = 'customer/dashboard';
+$route['myaccount/dashboard'] = 'customer/dashboard';
+$route['customer/login'] = 'customer/signin_page';
+$route['customer/register'] = 'customer/signup_page';
+

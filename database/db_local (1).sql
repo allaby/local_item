@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mar. 23 nov. 2021 à 14:47
+-- Généré le : mer. 24 nov. 2021 à 16:45
 -- Version du serveur :  8.0.23
 -- Version de PHP : 7.4.16
 
@@ -48,7 +48,12 @@ INSERT INTO `addresses` (`address_id`, `postalcode`, `street`, `street_number`, 
 (4, 'BP02 166', 'apkapka Segbeya', NULL, 'Cotonou', 'Benin', 1, NULL, NULL, 28),
 (5, '69007', '20 Quai Claude Bernard', NULL, 'Lyon', 'France', 1, NULL, NULL, 63),
 (6, '7005', '93 Rue Monge, 75005', NULL, 'Paris', 'France', 1, NULL, NULL, 66),
-(7, '', '93 Rue Monge, 75005', NULL, 'Paris', '', 1, NULL, NULL, 31);
+(7, '', '93 Rue Monge, 75005', NULL, 'Paris', '', 1, NULL, NULL, 31),
+(8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 70),
+(9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 71),
+(10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 72),
+(11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 73),
+(12, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 74);
 
 -- --------------------------------------------------------
 
@@ -164,8 +169,6 @@ CREATE TABLE `contacts` (
   `lastname` varchar(225) NOT NULL,
   `fisrtname` varchar(225) NOT NULL,
   `email` varchar(225) DEFAULT NULL,
-  `country` varchar(22) DEFAULT NULL,
-  `city` varchar(22) DEFAULT NULL,
   `gender` varchar(225) DEFAULT NULL,
   `password` varchar(225) NOT NULL,
   `phone` varchar(225) DEFAULT NULL,
@@ -173,16 +176,19 @@ CREATE TABLE `contacts` (
   `modif_date` datetime DEFAULT NULL,
   `img` varchar(225) DEFAULT NULL,
   `statut` int DEFAULT NULL,
-  `role_id` int NOT NULL,
-  `address_id` int DEFAULT NULL
+  `role_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `contacts`
 --
 
-INSERT INTO `contacts` (`contact_id`, `lastname`, `fisrtname`, `email`, `country`, `city`, `gender`, `password`, `phone`, `creation_date`, `modif_date`, `img`, `statut`, `role_id`, `address_id`) VALUES
-(28, 'Idriss', 'Ismael', 'ismaeltell94em@gmail.com', NULL, NULL, '', '$2y$10$eA1oB58ESxXeeCc3t0KDMexLqIlz1.qPn5.SJk3z0syNyN5bFb4h6', '+22967756042', '2021-05-14 09:05:53', '2021-06-22 12:06:40', '20210622120640.png', 1, 2, NULL);
+INSERT INTO `contacts` (`contact_id`, `lastname`, `fisrtname`, `email`, `gender`, `password`, `phone`, `creation_date`, `modif_date`, `img`, `statut`, `role_id`) VALUES
+(28, 'Idriss', 'Ismael', 'ismaeltell94em@gmail.com', '', '$2y$10$eA1oB58ESxXeeCc3t0KDMexLqIlz1.qPn5.SJk3z0syNyN5bFb4h6', '+22967756042', '2021-05-14 09:05:53', '2021-06-22 12:06:40', '20210622120640.png', 1, 2),
+(70, 'Rivas', 'Hamish', 'wejuroge@mailinator.com', NULL, '$2y$10$4uVzCcKYY7gvhYt0La3eHOuI9D9JSGCsTBy0em3aYINAi2IbTuU4q', NULL, '2021-11-24 11:44:48', NULL, NULL, NULL, 2),
+(71, 'Coleman', 'Margaret', 'qemofis@mailinator.com', NULL, '$2y$10$cY5HbIDGuBkRLQ0/zrXff.tcehzOCvnjQTc3Tzhazvby2bwQksspC', NULL, '2021-11-24 14:15:17', NULL, NULL, NULL, 2),
+(72, 'Mendoza', 'Noelani', 'sybeq@mailinator.com', NULL, '$2y$10$HhOb4uJ4BGK.5OQgt.c36uy/qNQXRakYe52AvEsTWMxbD878Txfyi', NULL, '2021-11-24 14:17:44', NULL, NULL, NULL, 2),
+(74, 'Langley', 'Octavius', 'kytojamu@mailinator.com', NULL, '$2y$10$yu9te8F1vwqQ.9YFmlkVUunDzKvrY2vdf/JqkVRKIUZH1BwHtBZ/6', NULL, '2021-11-24 14:22:49', NULL, NULL, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -568,9 +574,7 @@ ALTER TABLE `companies`
 -- Index pour la table `contacts`
 --
 ALTER TABLE `contacts`
-  ADD PRIMARY KEY (`contact_id`),
-  ADD KEY `fk_utilisateur_role_idx` (`role_id`),
-  ADD KEY `fk_contacts_addresses1_idx` (`address_id`);
+  ADD PRIMARY KEY (`contact_id`);
 
 --
 -- Index pour la table `deliveries`
@@ -692,7 +696,7 @@ ALTER TABLE `suppliers_has_items`
 -- AUTO_INCREMENT pour la table `addresses`
 --
 ALTER TABLE `addresses`
-  MODIFY `address_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `address_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pour la table `brands`
@@ -722,7 +726,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT pour la table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `contact_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `contact_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT pour la table `deliveries`
@@ -836,13 +840,6 @@ ALTER TABLE `carts`
 ALTER TABLE `cart_details`
   ADD CONSTRAINT `fk_cart_detail_cart1` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`cart_id`),
   ADD CONSTRAINT `fk_cart_detail_items1` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`);
-
---
--- Contraintes pour la table `contacts`
---
-ALTER TABLE `contacts`
-  ADD CONSTRAINT `fk_contacts_addresses1` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`address_id`),
-  ADD CONSTRAINT `fk_utilisateur_role` FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`);
 
 --
 -- Contraintes pour la table `inventories`

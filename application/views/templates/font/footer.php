@@ -511,7 +511,7 @@
                 item: item
             },
             success: function(data) {
-                console.log(data);
+                // console.log(data);
                 val = data.split("||")
                 if (val[0] == "true") {
                     var items = JSON.parse(val[1]);
@@ -528,7 +528,7 @@
     function carttotal() {
         var countitems = "<?= ($this->cart->contents()) ? count($this->cart->contents()) : 0; ?>";
         $("#cart_count").html(countitems);
-        console.log(countitems)
+        // console.log(countitems)
     }
 </script>
 

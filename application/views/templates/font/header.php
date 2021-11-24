@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/fontoffice/css/style.css">
     <!-- Responsive css -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/fontoffice/css/responsive.css">
+    <script src="<?= base_url() ?>assets/fontoffice/js/jquery.js"></script>
 </head>
 
 <body>
@@ -138,24 +139,28 @@
                                 </div>
                             </div>
                             <!-- user-menu -->
-                            <div class="ltn__drop-menu user-menu">
-                                <ul>
-                                    <li>
-                                        <a href="<?= base_url() ?>customer/login" title="Connexion"><i class="icon-user"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="ltn__drop-menu user-menu">
-                                <ul>
-                                    <li>
-                                        <a href="#"><i class="icon-user"></i></a>
-                                        <ul>
-                                            <li><a href="account.html">Mon Compte</a></li>
-                                            <li><a href="wishlist.html">Wishlist</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
+                            <?php if ($this->session->userdata('is_logged') == true) { ?>
+                                <div class="ltn__drop-menu user-menu">
+                                    <ul>
+                                        <li>
+                                            <a href="#"><i class="icon-user"></i></a>
+                                            <ul>
+                                                <li><a href="account.html">Mon Compte</a></li>
+                                                <li><a href="wishlist.html">Wishlist</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            <?php } else { ?>
+                                <div class="ltn__drop-menu user-menu">
+                                    <ul>
+                                        <li>
+                                            <a href="<?= base_url() ?>customer/login" title="Connexion"><i class="icon-user"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            <?php } ?>
                             <!-- mini-cart -->
                             <div class="mini-cart-icon">
                                 <a href="#ltn__utilize-cart-menu" class="ltn__utilize-toggle">

@@ -51,13 +51,17 @@ class Shop extends CI_Controller
     public function cart_page()
     {
         $data['page_title'] = "Panier - " . self::SITE_NAME;
+        $cart = $this->cart->contents();
+        // print_r($cart); exit;
+        $data['cart'] = $cart;
         $this->load->view('templates/font/header');
-        $this->load->view('shop/cart_page');
+        $this->load->view('shop/cart_page', $data);
         $this->load->view('templates/font/footer');
     }
 
     public function checkout_page()
     {
+        // print_r($this->session->userdata());exit;
         $data['page_title'] = "Checkout - " . self::SITE_NAME;
         $this->load->view('templates/font/header');
         $this->load->view('shop/checkout_page');
@@ -75,28 +79,75 @@ class Shop extends CI_Controller
     public function addtocart()
     {
         $item_id = $_REQUEST['item'];
-        // echo $item_id;
         $item = $this->shop_model->getItems($item_id);
-        // print_r($item);
-        // exit;
+        // $img = $this->shop_model->getImg_path($item_id);
+        // $imgpath = ;
         $cart_data = array(
-            'id' => $item['reference'],
+            'id' => $item['item_id'],
             'qty' => 1,
             'price'   => $item['price_max'],
             'name'    => $item['name'],
+            'ref' => $item['reference']
+            // 'imgpath' => $img['path']
         );
         $addcart = $this->cart->insert($cart_data);
-        if($addcart){
-            echo "true||".json_encode($item);
+        if ($addcart) {
+            echo "true||" . json_encode($item);
             exit;
-        }else{
+        } else {
             echo "false||Erreur, veillez reessayer";
             exit;
         }
     }
 
 
-    public function carttotal(){
-        
+    public function update_cart()
+    {
+        $quantity = $_REQUEST['qty'];
+        $rowid = $_REQUEST['item_id'];
+
+        $data = array(
+            'rowid' => $rowid,
+            'qty' => $quantity
+        );
+        $update_cart = $this->cart->update($data);
+        if ($update_cart) {
+            echo "true";
+            exit;
+        } else {
+            echo "false";
+            exit;
+        }
+    }
+
+
+    public function load_cart()
+    {
+        $cart = $this->cart->contents();
+        $table_cart = "";
+        foreach ($cart as $item) {
+            $table_cart .= '
+            <tr>
+            <input type="hidden" name="" id="cart_item_id" value="' . $item['rowid'] . '" />
+            <td class="cart-product-remove"><a href="javascript:void(0)" data-id="' . $item['rowid'] . '" onclick="removerow($(this).attr("data-id"))" class="btn-sm btn-success">x</a></td>
+            <td class="cart-product-image">
+                <a href="product-details.html"><img src="' . base_url() . 'assets/fontoffice/img/product/1.png" alt="#"></a>
+            </td>
+            <td class="cart-product-info">
+                <h4><a href="product-details.html">' . $item['name'] . '</a></h4>
+            </td>
+            <td class="cart-product-price">' . number_format($item['price'], 2, ',', ' ') . ' €</td>
+            <td class="">
+                <div class="">
+                    <input type="number" onchange="update_cart($(this).val())" value="' . $item['qty'] . '" id="qty" name="qtybutton" class="cart-plus-minus-box">
+                </div>
+            </td>
+            <td class="cart-product-subtotal">' . number_format($item['subtotal'], 2, ',', ' ') . '</td>
+        </tr>
+            ';
+        }
+
+        echo $table_cart;
+        exit;
     }
 }

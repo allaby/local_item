@@ -8,7 +8,7 @@ class Shop_model extends CI_Model{
     private $category_table = "categories";
 
     private const ELEM_ACTIV = 1;
-    private const ELEM_DESACTIV = 1;
+    private const ELEM_DESACTIV = 0;
 
 
     function get_item(){
@@ -31,6 +31,13 @@ class Shop_model extends CI_Model{
             $this->db->limit($limit, $start);
         }
         return $this->db->get($this->item_table)->result();
+    }
+
+    public function getImg_path($item_id){
+        $this->db->select($this->img_table.'.path');
+        $this->db->where($this->img_table.'.item_id', $item_id);
+        $this->db->where($this->img_table.'.feath_img', self::ELEM_ACTIV);
+        return $this->db->get($this->img_table)->row_array();
     }
 
 

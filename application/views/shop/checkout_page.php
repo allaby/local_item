@@ -1,5 +1,3 @@
-
-
 <!-- BREADCRUMB AREA START -->
 <div class="ltn__breadcrumb-area ltn__breadcrumb-area-2 ltn__breadcrumb-color-white bg-overlay-theme-black-90 bg-image" data-bg="<?= base_url() ?>assets/fontoffice/img/bg/9.jpg">
     <div class="container">
@@ -74,22 +72,22 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="input-item input-item-name ltn__custom-icon">
-                                            <input type="text" name="ltn__name" placeholder="First name">
+                                            <input type="text" name="ltn__name" placeholder="First name" value="<?= $this->session->userdata('firstname') ? $this->session->userdata('firstname') : " " ?>">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="input-item input-item-name ltn__custom-icon">
-                                            <input type="text" name="ltn__lastname" placeholder="Last name">
+                                            <input type="text" name="ltn__lastname" placeholder="Last name" value="<?= $this->session->userdata('lastname') ? $this->session->userdata('lastname') : " " ?>">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="input-item input-item-email ltn__custom-icon">
-                                            <input type="email" name="ltn__email" placeholder="email address">
+                                            <input type="email" name="ltn__email" placeholder="email address" value="<?= $this->session->userdata('email') ? $this->session->userdata('email') : " " ?>">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="input-item input-item-phone ltn__custom-icon">
-                                            <input type="text" name="ltn__phone" placeholder="phone number">
+                                            <input type="text" name="ltn__phone" placeholder="phone number" value="<?= $this->session->userdata('phone') ? $this->session->userdata('phone') : " " ?>">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -109,6 +107,9 @@
                                         <div class="input-item">
                                             <select class="nice-select">
                                                 <option>Select Country</option>
+                                                <?php if ($this->session->userdata('country')) : ?>
+                                                    <option selected><?= $this->session->userdata('country') ?></option>
+                                                <?php endif; ?>
                                                 <option>Australia</option>
                                                 <option>Canada</option>
                                                 <option>China</option>
@@ -124,7 +125,7 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="input-item">
-                                                    <input type="text" placeholder="House number and street name">
+                                                    <input type="text" placeholder="House number and street name" value="<?= $this->session->userdata('street') ? $this->session->userdata('street') : " " ?>">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
@@ -137,7 +138,7 @@
                                     <div class="col-lg-4 col-md-6">
                                         <h6>Town / City</h6>
                                         <div class="input-item">
-                                            <input type="text" placeholder="City">
+                                            <input type="text" placeholder="City" value="<?= $this->session->userdata('city') ? $this->session->userdata('city') : " " ?>">
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-6">
@@ -149,7 +150,7 @@
                                     <div class="col-lg-4 col-md-6">
                                         <h6>Zip</h6>
                                         <div class="input-item">
-                                            <input type="text" placeholder="Zip">
+                                            <input type="text"  value="<?= $this->session->userdata('postalcode') ? $this->session->userdata('postalcode') : '' ?>">
                                         </div>
                                     </div>
                                 </div>
@@ -245,4 +246,3 @@
     </div>
 </div>
 <!-- WISHLIST AREA START -->
-

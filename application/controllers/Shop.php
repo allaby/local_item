@@ -12,6 +12,7 @@ class Shop extends CI_Controller
     {
         parent::__construct();
         $this->load->model('shop_model');
+        $this->load->model('customer_model');
     }
 
 
@@ -148,6 +149,59 @@ class Shop extends CI_Controller
         }
 
         echo $table_cart;
+        exit;
+    }
+
+
+    public function place_order()
+    {
+
+        $contact_id = $this->session->userdata('contact_id');
+        $checkaddre = $this->customer_model->checkAddr($contact_id);
+        if (empty($_REQUEST['firstname']) || empty($_REQUEST['lastname']) || empty($_REQUEST['email']) || empty($_REQUEST['phone']) || empty($_REQUEST['country']) || empty($_REQUEST['address']) || empty($_REQUEST['city']) || empty($_REQUEST['zip'])) {
+            echo "false||Veillez remplir tous les champs obligatoire";
+            exit;
+        }
+
+        if ($checkaddre['street'] == "") {
+            $address_data = array(
+                'postalcode' => $_REQUEST['zip'],
+                'street' => $_REQUEST['address'],
+                'street2' => $_REQUEST['address2'],
+                'city' => $_REQUEST['city'],
+                'country' => $_REQUEST['country'],
+            );
+            $address = $this->customer_model->updateaddres($address_data, $checkaddre['address_id'],$contact_id);
+        }
+
+        $order_data = array(
+            'code' => "ORD" . date('YmdHms'),
+            'creation_date' => date("Y-m-d H:i:s"),
+            'total' => $this->cart->total(),
+            'status' => 1,
+            'address_id' => $checkaddre['address_id'],
+            'contact_id' => $this->session->userdata('contact_id')
+        );
+
+        $neworder = $this->shop_model->neworder($order_data);
+
+        $cart = $this->cart->contents();
+        foreach ($cart as $item) {
+            $orderdetails = array(
+                'quantity' => $item['qty'],
+                'subtotal' => $item['subtotal'],
+                'order_id' => $neworder,
+                'item_id' => $item['id']
+            );
+
+            $order_line = $this->shop_model->insert_order_line($orderdetails);
+        }
+        // print_r($order_line);
+        // exit;
+        if ($order_line) {
+            $this->cart->destroy();
+            echo "true||";
+        }
         exit;
     }
 }

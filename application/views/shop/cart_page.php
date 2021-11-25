@@ -60,7 +60,7 @@
                                 </tr>
                                 <tr>
                                     <td><strong>Order Total</strong></td>
-                                    <td><strong><?= $this->cart->total(); ?></strong></td>
+                                    <td><strong><?= number_format($this->cart->total(), 2, ',', ' ') ; ?> €</strong></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -99,7 +99,7 @@
             success: function(data) {
                 // console.log(data);
                 if (data == "true") {
-                    alert('Cart updated')
+                    // alert('Cart updated')
                     load_cart_table();
                 } else if (data == "false") {
                     alert('Cart not updated')

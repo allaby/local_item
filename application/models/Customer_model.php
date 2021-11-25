@@ -75,7 +75,7 @@ class Customer_model extends CI_Model
             'postalcode' => $user['postalcode'],
             'street' => $user['street'],
             'city' => $user['city'],
-            'street_number' => $user['street_number'],
+            'street2' => $user['street2'],
             'country' => $user['country'],
             'is_logged' => TRUE
         );
@@ -89,5 +89,22 @@ class Customer_model extends CI_Model
         $this->get_cust();
         $this->db->where($this->user_table . '.email', $email);
         return $this->db->get($this->user_table)->row_array();
+    }
+
+
+    public function checkAddr($contact)
+    {
+        $this->db->select($this->address_table . '.*');
+        $this->db->where($this->address_table . '.contact_id', $contact);
+        return $this->db->get($this->address_table)->row_array();
+    }
+
+
+    public function updateaddres($data, $address_id, $contact_id)
+    {
+        $this->db->where($this->address_table . '.address_id', $address_id);
+        $this->db->update($this->address_table, $data);
+        $this->loadsession($contact_id);
+        return true;
     }
 }

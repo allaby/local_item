@@ -104,14 +104,19 @@
                 console.log(data);
                 var val = data.split("||");
                 if (val[0] == "false") {
-                    alert(val[1])
+                    // alert(val[1])
+                    toastr.error(val[1])
                     $('#submitbtn').prop('disabled', false);
                     $("#submitbtn").html('CREATE ACCOUNT')
                 } else if (val[0] == "true") {
-                    alert(val[1]);
+                    // alert(val[1]);
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Compte créer avec success...'
+                    })
                     $('#submitbtn').prop('disabled', false);
-                    $("#submitbtn").html('COMPTE CREE')
-                    $("#create_cust")[0].refresh();
+                    $("#submitbtn").html('COMPTE CREE');
+                    window.location.href = "<?= base_url() ?>customer/login"
                 }
             }
 

@@ -36,26 +36,26 @@ class Customer extends CI_Controller
     }
 
 
-    public function signin(){
+    public function signin()
+    {
         // print_r($_REQUEST);exit;
         $email = $_REQUEST['email'];
         $password = $_REQUEST['password'];
 
-        if(empty($email) || empty($password)){
-            echo "false||Renseigner tous les champs obligatoire";exit;
+        if (empty($email) || empty($password)) {
+            echo "false||Renseigner tous les champs obligatoire";
+            exit;
         }
 
         $checkcontact = $this->customer_model->checkUserLogin($email, $password);
         // print_r($checkcontact);
-        if($checkcontact){
-            echo "true||ok";exit;
-
-        }else{
-            echo "false||Erreur, veiller vérifier vos identifiants";exit;
+        if ($checkcontact) {
+            echo "true||ok";
+            exit;
+        } else {
+            echo "false||Erreur, veiller vérifier vos identifiants";
+            exit;
         }
-
-
-
     }
 
 
@@ -108,5 +108,12 @@ class Customer extends CI_Controller
                 }
             }
         }
+    }
+
+
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        redirect(base_url());
     }
 }

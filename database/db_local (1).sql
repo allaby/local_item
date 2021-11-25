@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mer. 24 nov. 2021 à 16:45
+-- Généré le : jeu. 25 nov. 2021 à 16:26
 -- Version du serveur :  8.0.23
 -- Version de PHP : 7.4.16
 
@@ -31,7 +31,7 @@ CREATE TABLE `addresses` (
   `address_id` int NOT NULL,
   `postalcode` varchar(45) DEFAULT NULL,
   `street` varchar(45) DEFAULT NULL,
-  `street_number` varchar(45) DEFAULT NULL,
+  `street2` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `city` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `country` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `statut` int DEFAULT NULL,
@@ -44,16 +44,10 @@ CREATE TABLE `addresses` (
 -- Déchargement des données de la table `addresses`
 --
 
-INSERT INTO `addresses` (`address_id`, `postalcode`, `street`, `street_number`, `city`, `country`, `statut`, `is_supplyer`, `compagny_id`, `contact_id`) VALUES
+INSERT INTO `addresses` (`address_id`, `postalcode`, `street`, `street2`, `city`, `country`, `statut`, `is_supplyer`, `compagny_id`, `contact_id`) VALUES
 (4, 'BP02 166', 'apkapka Segbeya', NULL, 'Cotonou', 'Benin', 1, NULL, NULL, 28),
-(5, '69007', '20 Quai Claude Bernard', NULL, 'Lyon', 'France', 1, NULL, NULL, 63),
-(6, '7005', '93 Rue Monge, 75005', NULL, 'Paris', 'France', 1, NULL, NULL, 66),
-(7, '', '93 Rue Monge, 75005', NULL, 'Paris', '', 1, NULL, NULL, 31),
-(8, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 70),
-(9, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 71),
-(10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 72),
-(11, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 73),
-(12, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 74);
+(13, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 76),
+(14, '4874', '93 Rue Monge, 75005', '', 'Paris', 'Albania', NULL, NULL, NULL, 77);
 
 -- --------------------------------------------------------
 
@@ -188,7 +182,10 @@ INSERT INTO `contacts` (`contact_id`, `lastname`, `fisrtname`, `email`, `gender`
 (70, 'Rivas', 'Hamish', 'wejuroge@mailinator.com', NULL, '$2y$10$4uVzCcKYY7gvhYt0La3eHOuI9D9JSGCsTBy0em3aYINAi2IbTuU4q', NULL, '2021-11-24 11:44:48', NULL, NULL, NULL, 2),
 (71, 'Coleman', 'Margaret', 'qemofis@mailinator.com', NULL, '$2y$10$cY5HbIDGuBkRLQ0/zrXff.tcehzOCvnjQTc3Tzhazvby2bwQksspC', NULL, '2021-11-24 14:15:17', NULL, NULL, NULL, 2),
 (72, 'Mendoza', 'Noelani', 'sybeq@mailinator.com', NULL, '$2y$10$HhOb4uJ4BGK.5OQgt.c36uy/qNQXRakYe52AvEsTWMxbD878Txfyi', NULL, '2021-11-24 14:17:44', NULL, NULL, NULL, 2),
-(74, 'Langley', 'Octavius', 'kytojamu@mailinator.com', NULL, '$2y$10$yu9te8F1vwqQ.9YFmlkVUunDzKvrY2vdf/JqkVRKIUZH1BwHtBZ/6', NULL, '2021-11-24 14:22:49', NULL, NULL, NULL, 2);
+(74, 'Langley', 'Octavius', 'kytojamu@mailinator.com', NULL, '$2y$10$yu9te8F1vwqQ.9YFmlkVUunDzKvrY2vdf/JqkVRKIUZH1BwHtBZ/6', NULL, '2021-11-24 14:22:49', NULL, NULL, NULL, 2),
+(75, 'West', 'Connor', 'xotod@mailinator.com', NULL, '$2y$10$qggee6cQ.IqhjVYIdrtHy.Lycz0zk1t1ZDC.WCzDyx.2vibZjP.te', NULL, '2021-11-25 08:31:25', NULL, NULL, NULL, 2),
+(76, 'Barlow', 'Mark', 'tupyv@mailinator.com', NULL, '$2y$10$7F6E7iazH2R1diQrsL2cYemZr6hRQRSXECXG7VUJJ4kERMHp2O7Jm', NULL, '2021-11-25 08:34:55', NULL, NULL, NULL, 2),
+(77, 'William', 'Philip', 'fekogiqoxi@mailinator.com', NULL, '$2y$10$xQPwDj/FghujlZHGnvJ15eKLIVsNi5L9UReIujgt2SFUwCWXMHdwS', NULL, '2021-11-25 08:37:18', NULL, NULL, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -395,7 +392,7 @@ INSERT INTO `mail_templates` (`mail_templates_id`, `subject`, `body`, `active_da
 CREATE TABLE `orders` (
   `order_id` int NOT NULL,
   `code` varchar(45) NOT NULL,
-  `creation_date` date NOT NULL,
+  `creation_date` datetime NOT NULL,
   `total` int NOT NULL,
   `status` int NOT NULL,
   `payment_audit_id` int DEFAULT NULL,
@@ -403,6 +400,14 @@ CREATE TABLE `orders` (
   `shipping_id` int DEFAULT NULL,
   `contact_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `code`, `creation_date`, `total`, `status`, `payment_audit_id`, `address_id`, `shipping_id`, `contact_id`) VALUES
+(171, 'ORD20211125101126', '2021-11-25 10:57:26', 28856, 1, NULL, 14, NULL, 77),
+(172, 'ORD20211125111129', '2021-11-25 11:00:29', 56878, 1, NULL, 14, NULL, 77);
 
 -- --------------------------------------------------------
 
@@ -417,6 +422,19 @@ CREATE TABLE `order_details` (
   `order_id` int DEFAULT NULL,
   `item_id` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `order_details`
+--
+
+INSERT INTO `order_details` (`order_detail_id`, `quantity`, `subtotal`, `order_id`, `item_id`) VALUES
+(274, 1, 15695, 171, 3),
+(275, 1, 11501, 171, 4),
+(276, 1, 1660, 171, 7),
+(277, 1, 16948, 172, 6),
+(278, 1, 16205, 172, 5),
+(279, 1, 12224, 172, 11),
+(280, 1, 11501, 172, 4);
 
 -- --------------------------------------------------------
 
@@ -696,7 +714,7 @@ ALTER TABLE `suppliers_has_items`
 -- AUTO_INCREMENT pour la table `addresses`
 --
 ALTER TABLE `addresses`
-  MODIFY `address_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `address_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT pour la table `brands`
@@ -726,7 +744,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT pour la table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `contact_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `contact_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT pour la table `deliveries`
@@ -774,13 +792,13 @@ ALTER TABLE `item_statuses`
 -- AUTO_INCREMENT pour la table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=166;
+  MODIFY `order_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=173;
 
 --
 -- AUTO_INCREMENT pour la table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `order_detail_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=272;
+  MODIFY `order_detail_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=281;
 
 --
 -- AUTO_INCREMENT pour la table `payment_audits`

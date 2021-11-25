@@ -65,3 +65,5 @@ $route['myaccount/dashboard'] = 'customer/dashboard';
 $route['customer/login'] = 'customer/signin_page';
 $route['customer/register'] = 'customer/signup_page';
 
+$route['myaccount/logout'] = 'customer/logout';
+

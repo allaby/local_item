@@ -82,12 +82,17 @@
                 console.log(data);
                 var val = data.split("||");
                 if (val[0] == "false") {
-                    alert(val[1]);
+                    // alert();
+                    toastr.error(val[1])
                     $('#submitbtn').prop('disabled', false);
                     $("#submitbtn").html('SIGN IN');
                 } else if (val[0] == "true") {
                     $('#submitbtn').prop('disabled', false);
                     $("#submitbtn").html('CONNEXION ETABLIE...');
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Redirection en cours...'
+                    })
                     window.location.href = "<?= base_url() ?>"
                 }
             }

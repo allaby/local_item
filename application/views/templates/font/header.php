@@ -22,7 +22,24 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/fontoffice/css/style.css">
     <!-- Responsive css -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/fontoffice/css/responsive.css">
+
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="<?= base_url() ?>assets/backoffice/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="<?= base_url() ?>assets/backoffice/plugins/toastr/toastr.min.css">
     <script src="<?= base_url() ?>assets/fontoffice/js/jquery.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="<?= base_url() ?>assets/backoffice/plugins/sweetalert2/sweetalert2.min.js"></script>
+    <!-- Toastr -->
+    <script src="<?= base_url() ?>assets/backoffice/plugins/toastr/toastr.min.js"></script>
+    <script>
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+    </script>
 </head>
 
 <body>
@@ -147,6 +164,7 @@
                                             <ul>
                                                 <li><a href="account.html">Mon Compte</a></li>
                                                 <li><a href="wishlist.html">Wishlist</a></li>
+                                                <li><a href="<?= base_url() ?>myaccount/logout">Se deconnecter</a></li>
                                             </ul>
                                         </li>
                                     </ul>

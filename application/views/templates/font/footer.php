@@ -493,6 +493,7 @@
 <script src="<?= base_url() ?>assets/fontoffice/js/plugins.js"></script>
 <!-- Main JS -->
 <script src="<?= base_url() ?>assets/fontoffice/js/main.js"></script>
+
 <script>
     $(document).ready(function() {
         carttotal();

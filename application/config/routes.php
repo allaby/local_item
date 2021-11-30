@@ -55,6 +55,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 
 $route['shop/(:num)'] = 'shop';
+$route['shop/item/detail/(:num)'] = 'shop/item_detail/$1';
 
 $route['mycart'] = 'shop/cart_page';
 
@@ -66,4 +67,7 @@ $route['customer/login'] = 'customer/signin_page';
 $route['customer/register'] = 'customer/signup_page';
 
 $route['myaccount/logout'] = 'customer/logout';
+
+$route['admin/login'] = "customer/admin_login";
+
 

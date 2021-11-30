@@ -80,12 +80,13 @@ class Shop extends CI_Controller
     public function addtocart()
     {
         $item_id = $_REQUEST['item'];
+        $qtity = $_REQUEST['qty'];
         $item = $this->shop_model->getItems($item_id);
         // $img = $this->shop_model->getImg_path($item_id);
         // $imgpath = ;
         $cart_data = array(
             'id' => $item['item_id'],
-            'qty' => 1,
+            'qty' => $qtity,
             'price'   => $item['price_max'],
             'name'    => $item['name'],
             'ref' => $item['reference']
@@ -171,7 +172,7 @@ class Shop extends CI_Controller
                 'city' => $_REQUEST['city'],
                 'country' => $_REQUEST['country'],
             );
-            $address = $this->customer_model->updateaddres($address_data, $checkaddre['address_id'],$contact_id);
+            $address = $this->customer_model->updateaddres($address_data, $checkaddre['address_id'], $contact_id);
         }
 
         $order_data = array(
@@ -204,4 +205,41 @@ class Shop extends CI_Controller
         }
         exit;
     }
+
+
+
+    public function item_detail($item_id)
+    {
+        $itemdetails = $this->shop_model->getItems($item_id);
+        $itemcat = $this->shop_model->getCat($itemdetails['category_id']);
+        $relateditems = $this->shop_model->getRelatedItems($itemdetails['category_id']);
+        $data['itemdetails'] = $itemdetails;
+        $data['relateditems'] = $relateditems;
+        // print_r($relateditems);exit;
+        $data['page_title'] = ucfirst($itemdetails['name'])." - " . self::SITE_NAME;
+        $this->load->view('templates/font/header',$data);
+        $this->load->view('shop/single_item',$data);
+        $this->load->view('templates/font/footer');
+    }
+
+
+    public function quickview(){
+        // var_dump($_REQUEST);
+        $item_id = $_REQUEST['item'];
+        $itemdetails = $this->shop_model->getItems($item_id);
+
+        $image = $this->shop_model->getFeImg($item_id);
+        
+        // print_r($itemdetails);exit;
+        $itemdata = array(
+            "item_id" => $itemdetails['item_id'],
+            "ref" => $itemdetails['reference'],
+            "name" => $itemdetails['name'],
+            "price" => number_format($itemdetails['price_max'],2,',',' '),
+            "category" => $itemdetails['category_name']
+        );
+        echo json_encode($itemdata);
+        exit;
+    }
+
 }

@@ -54,8 +54,33 @@ class Shop_model extends CI_Model
     }
 
 
-    public function insert_order_line($data){
+    public function insert_order_line($data)
+    {
         $this->db->insert($this->order_detail_table, $data);
         return true;
     }
+
+    public function getCat($category)
+    {
+        $this->db->select($this->category_table . '.*');
+        $this->db->where($this->category_table . '.category_id', $category);
+        return $this->db->get($this->category_table)->row_array();
+    }
+
+
+    public function getrelateditems($cat)
+    {
+        $this->get_item();
+        $this->db->where($this->item_table . '.category_id', $cat);
+        $this->db->limit(6);
+        return $this->db->get($this->item_table)->result();
+    }
+
+    public function getFeImg($item_id){
+        $this->db->select($this->img_table.'.*');
+        $this->db->where($this->img_table . '.feath_img', 1);
+        $this->db->where($this->img_table . '.item_id', $item_id);
+        return $this->db->get($this->img_table)->row_array();
+    }
+    
 }

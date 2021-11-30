@@ -316,25 +316,22 @@
                                                 <li class="review-total"> <a href="#"> ( 95 Reviews )</a></li>
                                             </ul>
                                         </div>
-                                        <h3>Vegetables Juices</h3>
+                                        <h3 id="quick_name"></h3>
                                         <div class="product-price">
-                                            <span>$149.00</span>
-                                            <del>$165.00</del>
+                                            <span id="quick_price"></span>
+                                            <!-- <del>$165.00</del> -->
                                         </div>
                                         <div class="modal-product-meta ltn__product-details-menu-1">
                                             <ul>
                                                 <li>
                                                     <strong>Categories:</strong>
                                                     <span>
-                                                        <a href="#">Parts</a>
-                                                        <a href="#">Car</a>
-                                                        <a href="#">Seat</a>
-                                                        <a href="#">Cover</a>
+                                                        <a href="#" id="quick_cat"></a>
                                                     </span>
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="ltn__product-details-menu-2">
+                                        <!-- <div class="ltn__product-details-menu-2">
                                             <ul>
                                                 <li>
                                                     <div class="cart-plus-minus">
@@ -348,8 +345,8 @@
                                                     </a>
                                                 </li>
                                             </ul>
-                                        </div>
-                                        <div class="ltn__product-details-menu-3">
+                                        </div> -->
+                                        <!-- <div class="ltn__product-details-menu-3">
                                             <ul>
                                                 <li>
                                                     <a href="#" class="" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
@@ -364,7 +361,7 @@
                                                     </a>
                                                 </li>
                                             </ul>
-                                        </div>
+                                        </div> -->
                                         <hr>
                                         <div class="ltn__social-media">
                                             <ul>
@@ -500,16 +497,29 @@
     });
 
     function quickview(item) {
-
+        $.ajax({
+            method: "POST",
+            url: '<?= base_url() ?>shop/quickview',
+            data : {item : item},
+            success: function(data) {
+                console.log(data);
+                var item = JSON.parse(data);
+                $("#quick_name").html(item.name);
+                $("#quick_price").html(item.price);
+                $("#quick_cat").html(item.category);
+                $("#quick_view_modal").modal("show");
+            }
+        })
     }
 
-    function addTocart(item) {
+    function addTocart(item, qty) {
         // alert (item)
         $.ajax({
             method: "POST",
             url: "<?= base_url() ?>shop/addtocart",
             data: {
-                item: item
+                item: item,
+                qty: qty,
             },
             success: function(data) {
                 // console.log(data);

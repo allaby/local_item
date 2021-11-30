@@ -63,7 +63,7 @@
                                     <div class="col-xl-4 col-sm-6 col-6">
                                         <div class="ltn__product-item ltn__product-item-3 text-center">
                                             <div class="product-img">
-                                                <a href="product-details.html"><img src="<?= base_url() ?>assets/fontoffice/img/product/1.png" alt="#"></a>
+                                                <a href="<?= base_url() ?>shop/item/detail/<?= $item->item_id ?>"><img src="<?= base_url() ?>assets/fontoffice/img/product/1.png" alt="#"></a>
                                                 <div class="product-badge">
                                                     <ul>
                                                         <li class="sale-badge">New</li>
@@ -80,7 +80,7 @@
                                                             <!-- <a href="#" title="Add to Cart" data-toggle="modal" data-target="#add_to_cart_modal">
                                                                 <i class="fas fa-shopping-cart"></i>
                                                             </a> -->
-                                                            <a href="javascript:void(0)" data-id="<?= $item->item_id ?>" title="Add to Cart" onclick="addTocart($(this).attr('data-id'))">
+                                                            <a href="javascript:void(0)" data-id="<?= $item->item_id ?>" title="Add to Cart" onclick="addTocart($(this).attr('data-id'), 1)">
                                                                 <i class="fas fa-shopping-cart"></i>
                                                             </a>
                                                         </li>
@@ -101,7 +101,7 @@
                                                         <li><a href="#"><i class="far fa-star"></i></a></li>
                                                     </ul>
                                                 </div>
-                                                <h2 class="product-title"><a href="product-details.html"><?= $item->name ?></a></h2>
+                                                <h2 class="product-title"><a href="<?= base_url() ?>shop/item/detail/<?= $item->item_id ?>"><?= $item->name ?></a></h2>
                                                 <div class="product-price">
                                                     <span><?= number_format($item->price_max, 2, ',', ' ') ?> €</span>
                                                     <!-- <del>$162.00</del> -->
@@ -155,7 +155,7 @@
                             <li>
                                 <div class="top-rated-product-item clearfix">
                                     <div class="top-rated-product-img">
-                                        <a href="product-details.html"><img src="<?= base_url() ?>assets/fontoffice/img/product/1.png" alt="#"></a>
+                                        <a href="<?= base_url() ?>shop/item/detail/<?= $item->item_id ?>"><img src="<?= base_url() ?>assets/fontoffice/img/product/1.png" alt="#"></a>
                                     </div>
                                     <div class="top-rated-product-info">
                                         <div class="product-ratting">
@@ -167,7 +167,7 @@
                                                 <li><a href="#"><i class="fas fa-star"></i></a></li>
                                             </ul>
                                         </div>
-                                        <h6><a href="product-details.html">Mixel Solid Seat Cover</a></h6>
+                                        <h6><a href="<?= base_url() ?>shop/item/detail/<?= $item->item_id ?>">Mixel Solid Seat Cover</a></h6>
                                         <div class="product-price">
                                             <span>$49.00</span>
                                             <del>$65.00</del>
@@ -178,7 +178,7 @@
                             <li>
                                 <div class="top-rated-product-item clearfix">
                                     <div class="top-rated-product-img">
-                                        <a href="product-details.html"><img src="<?= base_url() ?>assets/fontoffice/img/product/2.png" alt="#"></a>
+                                        <a href="<?= base_url() ?>shop/item/detail/<?= $item->item_id ?>"><img src="<?= base_url() ?>assets/fontoffice/img/product/2.png" alt="#"></a>
                                     </div>
                                     <div class="top-rated-product-info">
                                         <div class="product-ratting">
@@ -190,7 +190,7 @@
                                                 <li><a href="#"><i class="fas fa-star"></i></a></li>
                                             </ul>
                                         </div>
-                                        <h6><a href="product-details.html">Vegetables Juices</a></h6>
+                                        <h6><a href="<?= base_url() ?>shop/item/detail/<?= $item->item_id ?>">Vegetables Juices</a></h6>
                                         <div class="product-price">
                                             <span>$49.00</span>
                                             <del>$65.00</del>
@@ -201,7 +201,7 @@
                             <li>
                                 <div class="top-rated-product-item clearfix">
                                     <div class="top-rated-product-img">
-                                        <a href="product-details.html"><img src="<?= base_url() ?>assets/fontoffice/img/product/3.png" alt="#"></a>
+                                        <a href="<?= base_url() ?>shop/item/detail/<?= $item->item_id ?>"><img src="<?= base_url() ?>assets/fontoffice/img/product/3.png" alt="#"></a>
                                     </div>
                                     <div class="top-rated-product-info">
                                         <div class="product-ratting">
@@ -213,7 +213,7 @@
                                                 <li><a href="#"><i class="far fa-star"></i></a></li>
                                             </ul>
                                         </div>
-                                        <h6><a href="product-details.html">Coil Spring Conversion</a></h6>
+                                        <h6><a href="<?= base_url() ?>shop/item/detail/<?= $item->item_id ?>">Coil Spring Conversion</a></h6>
                                         <div class="product-price">
                                             <span>$49.00</span>
                                             <del>$65.00</del>

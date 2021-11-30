@@ -116,4 +116,12 @@ class Customer extends CI_Controller
         $this->session->sess_destroy();
         redirect(base_url());
     }
+
+
+    public function admin_login() {
+        // var_dump(password_hash('azerty123', PASSWORD_DEFAULT));exit;
+        $this->load->view('admin/admin_login');
+    }
+
+
 }

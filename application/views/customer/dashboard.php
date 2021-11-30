@@ -35,12 +35,12 @@
                             <div class="col-lg-4">
                                 <div class="ltn__tab-menu-list mb-50">
                                     <div class="nav">
-                                        <a class="active show" data-toggle="tab" href="#liton_tab_1_1">Dashboard <i class="fas fa-home"></i></a>
-                                        <a data-toggle="tab" href="#liton_tab_1_2">Orders <i class="fas fa-file-alt"></i></a>
+                                        <a class="active show" data-toggle="tab" href="#liton_tab_1_1">Tableau de bord <i class="fas fa-home"></i></a>
+                                        <a data-toggle="tab" href="#liton_tab_1_2">Mes commandes <i class="fas fa-file-alt"></i></a>
                                         <a data-toggle="tab" href="#liton_tab_1_3">Downloads <i class="fas fa-arrow-down"></i></a>
-                                        <a data-toggle="tab" href="#liton_tab_1_4">address <i class="fas fa-map-marker-alt"></i></a>
-                                        <a data-toggle="tab" href="#liton_tab_1_5">Account Details <i class="fas fa-user"></i></a>
-                                        <a href="login.html">Logout <i class="fas fa-sign-out-alt"></i></a>
+                                        <a data-toggle="tab" href="#liton_tab_1_4">Mon Adresse <i class="fas fa-map-marker-alt"></i></a>
+                                        <a data-toggle="tab" href="#liton_tab_1_5">Paramêtres <i class="fas fa-user"></i></a>
+                                        <a href="<?= base_url(); ?>myaccount/logout">Se déconnecter <i class="fas fa-sign-out-alt"></i></a>
                                     </div>
                                 </div>
                             </div>

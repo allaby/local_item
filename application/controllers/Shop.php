@@ -242,4 +242,33 @@ class Shop extends CI_Controller
         exit;
     }
 
+    public function newcat(){
+        
+        $cat_name = $_REQUEST['cat_name'];
+        if(empty($_REQUEST['cat_name'])){
+            echo "false||Veillez entrer le nom de la catégorie";
+            exit;
+        }
+        $checkcat_name = $this->shop_model->checkcatnam($cat_name);
+        // print_r($checkcat_name);die;
+        if($checkcat_name == 0){
+            $catdata = array(
+                "name" => $cat_name,
+                "creation_date" => date("Y-m-d H:i:s"),
+                "is_active" => 1
+            );
+            $insertnewcat = $this->shop_model->insertCat($catdata);
+            if($insertnewcat){
+                echo "true||Catégorie ajoutée";
+                exit;
+            }else{
+                 echo "false||Une erreur est survenu lors de la création d'une catégorie, veillez réesayer";
+                exit;
+            }
+        }else{
+            echo "false||Ce nom existe déjà, veillez le changer";
+            exit;
+        }
+    }
+
 }

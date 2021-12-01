@@ -28,7 +28,12 @@
                          <h3 class="card-title">Ajouter une nouvelle categorie</h3>
                      </div>
                      <div class="card-body">
-                         Start creating your amazing application!
+                         <form>
+                             <div class="form-group">
+                                 <input class="form-control" type="text" placeholder="Catégorie" id="category_name">
+                             </div>
+                             <button type="submit" onclick="addCat() ; return false" class="btn btn-primary" id="catsubmit">Créer</button>
+                         </form>
                      </div>
                      <!-- /.card-footer-->
                  </div>
@@ -39,8 +44,8 @@
                      <div class="card-header">
                          <h3 class="card-title">Catégorie disponibles</h3>
                      </div>
-                     <div class="card-body">
-                         <table class="table table-striped">
+                     <div class="card-body table-responsive p-0" style="height: 300px;">
+                         <table class="table table-head-fixed²">
                              <thead>
                                  <tr>
                                      <th>Catégorie</th>
@@ -72,3 +77,34 @@
      <!-- /.content -->
  </div>
  <!-- /.content-wrapper -->
+ <script>
+     function addCat() {
+         $("#catsubmit").attr("disabled", true);
+         $("#catsubmit").html('<i class="fas fa-spinner fa-pulse"></i>');
+         var cat_name = $("#category_name").val();
+         $.ajax({
+             method: "POST",
+             url: "<?= base_url() ?>shop/newcat",
+             data: {
+                 cat_name: cat_name
+             },
+             success: function(data) {
+                 console.log(data);
+                 var val = data.split("||");
+                 if (val[0] == "false") {
+                     $("#catsubmit").attr("disabled", false);
+                     $("#catsubmit").html('Créer');
+                     toastr.error(val[1])
+                 } else if (val[0] == "true") {
+                     $("#catsubmit").attr("disabled", false);
+                     $("#catsubmit").html('Créer');
+                     Toast.fire({
+                         icon: 'success',
+                         title: val[1],
+                     })
+                     location.reload();
+                 }
+             }
+         })
+     }
+ </script>

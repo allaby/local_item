@@ -71,3 +71,4 @@ $route['myaccount/logout'] = 'customer/logout';
 $route['admin/login'] = "customer/admin_login";
 $route['admin/dashboard'] = "dashboard";
 $route['admin/items/categories'] = "dashboard/category_page";
+$route['admin/items/list'] = 'dashboard/items_page';

@@ -93,7 +93,20 @@ class Shop_model extends CI_Model
             $this->db->where($this->category_table . '.category_id', $cat);
             return $this->db->get($this->category)->row_array();
         } else {
+            $this->db->order_by($this->category_table . '.category_id', 'DESC');
             return $this->db->get($this->category_table)->result();
         }
+    }
+
+    public function checkcatnam($catname){
+        $this->db->select($this->category_table . '.*');
+        $this->db->where($this->category_table . '.name', $catname);
+        return $this->db->get($this->category_table)->num_rows();
+    }
+
+
+    public function insertCat($data){
+        $this->db->insert($this->category_table, $data);
+        return true;
     }
 }

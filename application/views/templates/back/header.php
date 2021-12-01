@@ -26,6 +26,10 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/backoffice/plugins/daterangepicker/daterangepicker.css">
     <!-- summernote -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/backoffice/plugins/summernote/summernote-bs4.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="<?= base_url() ?>assets/backoffice/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- Toastr -->
+    <link rel="stylesheet" href="<?= base_url() ?>assets/backoffice/plugins/toastr/toastr.min.css">
     <script src="<?= base_url() ?>assets/fontoffice/js/jquery.js"></script>
     <!-- SweetAlert2 -->
     <script src="<?= base_url() ?>assets/backoffice/plugins/sweetalert2/sweetalert2.min.js"></script>
@@ -247,7 +251,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                    <a href="<?= base_url() ?>admin/items/list" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Liste des Articles</p>
                                     </a>

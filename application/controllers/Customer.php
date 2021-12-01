@@ -48,10 +48,15 @@ class Customer extends CI_Controller
         }
 
         $checkcontact = $this->customer_model->checkUserLogin($email, $password);
-        // print_r($checkcontact);
+        // print_r($this->session->userdata());exit;
         if ($checkcontact) {
-            echo "true||ok";
-            exit;
+            if($this->session->userdata('role') == 1){
+                echo "true||admin";
+                exit;
+            }else if($this->session->userdata('role') == 2){
+                echo "true||customer";
+                exit;
+            }
         } else {
             echo "false||Erreur, veiller vérifier vos identifiants";
             exit;
@@ -120,7 +125,8 @@ class Customer extends CI_Controller
 
     public function admin_login() {
         // var_dump(password_hash('azerty123', PASSWORD_DEFAULT));exit;
-        $this->load->view('admin/admin_login');
+        $data['page_title'] = "Connexion - Admin - ". self::SITE_NAME;
+        $this->load->view('admin/admin_login', $data);
     }
 
 

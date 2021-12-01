@@ -76,11 +76,24 @@ class Shop_model extends CI_Model
         return $this->db->get($this->item_table)->result();
     }
 
-    public function getFeImg($item_id){
-        $this->db->select($this->img_table.'.*');
+    public function getFeImg($item_id)
+    {
+        $this->db->select($this->img_table . '.*');
         $this->db->where($this->img_table . '.feath_img', 1);
         $this->db->where($this->img_table . '.item_id', $item_id);
         return $this->db->get($this->img_table)->row_array();
     }
-    
+
+    public function getAllCat($cat = false)
+    {
+        $this->db->select($this->category_table . '.*');
+        // $this->db->select_sum($this->item_table . '.item_id');
+        // $this->db->join($this->item_table, $this->item_table . '.category_id = ' . $this->category_table . '.category_id', 'left');
+        if ($cat) {
+            $this->db->where($this->category_table . '.category_id', $cat);
+            return $this->db->get($this->category)->row_array();
+        } else {
+            return $this->db->get($this->category_table)->result();
+        }
+    }
 }

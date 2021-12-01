@@ -14,6 +14,19 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/backoffice/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/backoffice/dist/css/adminlte.min.css">
+    <script src="<?= base_url() ?>assets/fontoffice/js/jquery.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="<?= base_url() ?>assets/backoffice/plugins/sweetalert2/sweetalert2.min.js"></script>
+    <!-- Toastr -->
+    <script src="<?= base_url() ?>assets/backoffice/plugins/toastr/toastr.min.js"></script>
+    <script>
+        var Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
+    </script>
 </head>
 
 <body class="hold-transition login-page">
@@ -26,7 +39,7 @@
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
 
-                <form action="<?= base_url() ?>assets/backoffice/index3.html" method="post">
+                <form action="" method="">
                     <div class="input-group mb-3">
                         <input type="email" id="login_email" class="form-control" placeholder="Email">
                         <div class="input-group-append">
@@ -36,7 +49,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" id="login_passe" class="form-control" placeholder="Password">
+                        <input type="password" id="login_password" class="form-control" placeholder="Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -53,8 +66,8 @@
                             </div>
                         </div>
                         <!-- /.col -->
-                        <div class="col-4">
-                            <button type="submit" id="submitbtn" class="btn btn-primary btn-block">Sign In</button>
+                        <div class="col-12">
+                            <button type="submit" id="submitbtn" onclick="admin_connect();return false" class="btn btn-primary btn-block">Sign In</button>
                         </div>
                         <!-- /.col -->
                     </div>
@@ -81,10 +94,39 @@
     <script src="<?= base_url() ?>assets/backoffice/dist/js/adminlte.min.js"></script>
     <script>
         function admin_connect() {
-            
+            $('#submitbtn').attr('disabled', true);
+            $('#submitbtn').html("Connexion en cour...");
             var email = $("#login_email").val();
             var password = $("#login_password").val();
-
+            $.ajax({
+                method: "POST",
+                url: "<?= base_url() ?>customer/signin",
+                data: {
+                    email: email,
+                    password: password
+                },
+                success: function(data) {
+                    console.log(data);
+                    var val = data.split("||");
+                    if (val[0] == "true") {
+                        $('#submitbtn').attr('disabled', false);
+                        $('#submitbtn').html("Connexion avec succes");
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Redirection en cours...'
+                        })
+                        if (val[1] == "admin") {
+                            window.location.href = "<?= base_url() ?>admin/dashboard"
+                        } else if (val[1] == "customer") {
+                            window.location.href = "<?= base_url() ?>"
+                        }
+                    } else if (val[0] == "false") {
+                        $('#submitbtn').attr('disabled', false);
+                        $('#submitbtn').html("Se connecter");
+                        toastr.error(val[1])
+                    }
+                }
+            })
         }
     </script>
 </body>

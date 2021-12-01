@@ -86,6 +86,7 @@
                     toastr.error(val[1])
                     $('#submitbtn').prop('disabled', false);
                     $("#submitbtn").html('SIGN IN');
+
                 } else if (val[0] == "true") {
                     $('#submitbtn').prop('disabled', false);
                     $("#submitbtn").html('CONNEXION ETABLIE...');
@@ -93,7 +94,11 @@
                         icon: 'success',
                         title: 'Redirection en cours...'
                     })
-                    window.location.href = "<?= base_url() ?>"
+                    if (val[1] == "admin") {
+                        window.location.href = "<?= base_url() ?>admin/dashboard"
+                    } else if (val[1] == "customer") {
+                        window.location.href = "<?= base_url() ?>"
+                    }
                 }
             }
         })

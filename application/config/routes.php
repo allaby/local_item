@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -69,5 +69,5 @@ $route['customer/register'] = 'customer/signup_page';
 $route['myaccount/logout'] = 'customer/logout';
 
 $route['admin/login'] = "customer/admin_login";
-
-
+$route['admin/dashboard'] = "dashboard";
+$route['admin/items/categories'] = "dashboard/category_page";

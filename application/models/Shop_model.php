@@ -9,6 +9,7 @@ class Shop_model extends CI_Model
     private $category_table = "categories";
     private $order_table = "orders";
     private $order_detail_table = "order_details";
+    private $inventory_table = "inventories";
 
     private const ELEM_ACTIV = 1;
     private const ELEM_DESACTIV = 0;
@@ -51,6 +52,17 @@ class Shop_model extends CI_Model
     {
         $this->db->insert($this->order_table, $data);
         return $this->db->insert_id();
+    }
+
+    public function getOrders($order = false){
+        $this->db->select($this->order_table.'.*');
+        if($order){
+            $this->db->where($this->order_table.'.order_id', $order);
+            return $this->db->get($this->order)->row_array();
+        }else{
+            $this->db->order_by($this->order_table.'.order_id','DESC');
+            return $this->db->get($this->order_table)->result();
+        }
     }
 
 
@@ -98,15 +110,36 @@ class Shop_model extends CI_Model
         }
     }
 
-    public function checkcatnam($catname){
+    public function checkcatnam($catname)
+    {
         $this->db->select($this->category_table . '.*');
         $this->db->where($this->category_table . '.name', $catname);
         return $this->db->get($this->category_table)->num_rows();
     }
 
 
-    public function insertCat($data){
+    public function insertCat($data)
+    {
         $this->db->insert($this->category_table, $data);
+        return true;
+    }
+
+    public function updateItemStock($item_id, $qty)
+    {
+        $stock = $this->getItems($item_id)['stock_av'];
+        $newstock = $qty + $stock;
+        $data = array(
+            "stock_av" => $newstock
+        );
+        $this->db->where($this->item_table . '.item_id', $item_id);
+        $this->db->update($this->item_table, $data);
+        return true;
+        // var_dump($stock);
+    }
+
+
+    public function newInventoty($data){
+        $this->db->insert($this->inventory_table, $data);
         return true;
     }
 }

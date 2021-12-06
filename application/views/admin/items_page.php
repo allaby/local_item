@@ -29,22 +29,28 @@
                  <table id="example1" class="table table-bordered table-striped">
                      <thead>
                          <tr>
-                             <th>Action</th>
+                             <th>REF</th>
                              <th>Article</th>
                              <th>Categorie</th>
                              <th>Stock Disponible</th>
-                             <th>prix</th>
+                             <th>Prix</th>
+                             <th>Action</th>
                          </tr>
                      </thead>
                      <tbody>
-                         <tr>
-                             <td>Article</th>
-                             <td>Categorie</th>
-                             <td>Stock Disponible</th>
-                             <td>prix</th>
-                             <td>Action</th>
-                         </tr>
-
+                         <?php foreach ($items as $item) : ?>
+                             <tr>
+                                 <td><?= $item->reference ?></th>
+                                 <td><?= $item->name ?></th>
+                                 <td><?= $item->category_name ?></th>
+                                 <td><?= (intval($item->stock) - intval($item->stock_av) <= 0 ) ? '<span class="badge badge-soft-danger p-2">Rupture de stock</span>' : (intval($item->stock) - intval($item->stock_av)) ?></th>
+                                 <td><?= number_format($item->price_max, 2, ',', ' ') ?></th>
+                                 <td>
+                                     <a href="<?= base_url() ?>item/detail/<?= $item->item_id ?>" class="btn-sm btn-default" title="voir l'article"><i class="fa fa-eye"></i></a>
+                                     <a class="btn-sm btn-default" title="mofifier l'article"><i class="fa fa-pen"></i></a>
+                                 </th>
+                             </tr>
+                         <?php endforeach; ?>
                      </tbody>
                  </table>
              </div>

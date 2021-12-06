@@ -265,7 +265,7 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/widgets.html" class="nav-link <?= ($activemenu == 'orders') ? "active" : " " ?>">
+                            <a href="<?= base_url() ?>admin/orders/list" class="nav-link <?= ($activemenu == 'orders') ? "active" : " " ?>">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Commandes

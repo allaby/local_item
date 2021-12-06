@@ -3304,8 +3304,13 @@
                                     </div>
                                     <div class="product-hover-action">
                                         <ul>
+                                            <!-- <li>
+                                                <a href="javascript:void(0)" id="<?= $item->item_id ?>" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </li> -->
                                             <li>
-                                                <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
+                                                <a href="javascript:void(0)" id="<?= $item->item_id ?>" title="Quick View" onclick="quickview($(this).attr('data-id'))">
                                                     <i class="far fa-eye"></i>
                                                 </a>
                                             </li>

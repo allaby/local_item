@@ -51,7 +51,6 @@ class Dashboard extends CI_Controller
         $this->load->view('templates/back/footer');
     }
 
-<<<<<<< HEAD
     public function customer_list(){
         $data['activemenu'] = "customers";
         $data['page_title'] = "";
@@ -65,6 +64,8 @@ class Dashboard extends CI_Controller
 
 
     public function additem_page(){
+        $this->auth->isLoggedIn();
+        $this->auth->isAdmin();
         $data['activemenu'] = "items";
         $data['page_title'] = "";
         $data['categories'] = $this->shop_model->getCat();
@@ -80,7 +81,6 @@ class Dashboard extends CI_Controller
     
 
 
-=======
 
     public function order_page(){
         $this->auth->isLoggedIn();
@@ -95,5 +95,4 @@ class Dashboard extends CI_Controller
         $this->load->view('templates/back/footer');
     }
 
->>>>>>> refs/remotes/origin/main
 }

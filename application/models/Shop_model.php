@@ -57,13 +57,14 @@ class Shop_model extends CI_Model
         return $this->db->insert_id();
     }
 
-    public function getOrders($order = false){
-        $this->db->select($this->order_table.'.*');
-        if($order){
-            $this->db->where($this->order_table.'.order_id', $order);
+    public function getOrders($order = false)
+    {
+        $this->db->select($this->order_table . '.*');
+        if ($order) {
+            $this->db->where($this->order_table . '.order_id', $order);
             return $this->db->get($this->order)->row_array();
-        }else{
-            $this->db->order_by($this->order_table.'.order_id','DESC');
+        } else {
+            $this->db->order_by($this->order_table . '.order_id', 'DESC');
             return $this->db->get($this->order_table)->result();
         }
     }
@@ -132,7 +133,6 @@ class Shop_model extends CI_Model
         return true;
     }
 
-<<<<<<< HEAD
 
     public function getCustOrders($contact_id)
     {
@@ -150,7 +150,7 @@ class Shop_model extends CI_Model
         $this->db->select($this->item_table . '.price_max as unit_price');
         $this->db->join($this->item_table, $this->item_table . '.item_id = ' . $this->order_detail_table . '.item_id');
         return $this->db->get($this->order_detail_table)->result();
-=======
+    }
     public function updateItemStock($item_id, $qty)
     {
         $stock = $this->getItems($item_id)['stock_av'];
@@ -165,9 +165,9 @@ class Shop_model extends CI_Model
     }
 
 
-    public function newInventoty($data){
+    public function newInventoty($data)
+    {
         $this->db->insert($this->inventory_table, $data);
         return true;
->>>>>>> refs/remotes/origin/main
     }
 }

@@ -13,6 +13,7 @@ class Shop extends CI_Controller
         parent::__construct();
         $this->load->model('shop_model');
         $this->load->model('customer_model');
+        $sender = $this->mailer->load();
     }
 
 

@@ -15,6 +15,8 @@ class Dashboard extends CI_Controller
 
     public function index()
     {
+        $this->auth->isLoggedIn();
+        $this->auth->isAdmin();
         $data['activemenu'] = "dashboard";
         $this->load->view('templates/back/header', $data);
         $this->load->view('admin/admin_dashboard', $data);
@@ -23,6 +25,8 @@ class Dashboard extends CI_Controller
 
     public function category_page()
     {
+        $this->auth->isLoggedIn();
+        $this->auth->isAdmin();
         $data['activemenu'] = "items";
         $data['page_title'] = "";
         $data['page'] = "Catégories";
@@ -35,6 +39,8 @@ class Dashboard extends CI_Controller
 
     public function items_page()
     {
+        $this->auth->isLoggedIn();
+        $this->auth->isAdmin();
         $data['activemenu'] = "items";
         $data['page_title'] = "";
         $data['page'] = "Tous Les Article";
@@ -45,6 +51,7 @@ class Dashboard extends CI_Controller
         $this->load->view('templates/back/footer');
     }
 
+<<<<<<< HEAD
     public function customer_list(){
         $data['activemenu'] = "customers";
         $data['page_title'] = "";
@@ -73,4 +80,20 @@ class Dashboard extends CI_Controller
     
 
 
+=======
+
+    public function order_page(){
+        $this->auth->isLoggedIn();
+        $this->auth->isAdmin();
+        $data['activemenu'] = "orders";
+        $data['page_title'] = "";
+        $data['page'] = "Tous les commande";
+        $data['orders'] = $this->shop_model->getOrders();
+        // var_dump($data['orders']);exit;
+        $this->load->view('templates/back/header', $data);
+        $this->load->view('admin/order_page', $data);
+        $this->load->view('templates/back/footer');
+    }
+
+>>>>>>> refs/remotes/origin/main
 }

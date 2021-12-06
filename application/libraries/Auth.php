@@ -30,7 +30,7 @@ class Auth {
     public function isLoggedIn(){
         if(!$this->CI->session->userdata('is_logged')){ 
             //redirige vers la page de connection
-            redirect('login','refresh');    
+            redirect('customer/login','refresh');    
             return false ;
         }
         return true;
@@ -55,10 +55,11 @@ class Auth {
      * @return boolean
      */
     public function isAdmin(){
-        if($this->CI->session->userdata('role')== 2){
-           return true;
+        if($this->CI->session->userdata('role') != 1){
+            redirect('myaccount/dashboard','refresh');    
+            return false ;
         }
-        return false;
+        return true;
     }
     
     public function isSuperAdmin(){

@@ -179,7 +179,7 @@ class Shop extends CI_Controller
             'code' => "ORD" . date('YmdHms'),
             'creation_date' => date("Y-m-d H:i:s"),
             'total' => $this->cart->total(),
-            'status' => 1,
+            'status' => 2,
             'address_id' => $checkaddre['address_id'],
             'contact_id' => $this->session->userdata('contact_id')
         );
@@ -188,6 +188,7 @@ class Shop extends CI_Controller
 
         $cart = $this->cart->contents();
         foreach ($cart as $item) {
+            
             $orderdetails = array(
                 'quantity' => $item['qty'],
                 'subtotal' => $item['subtotal'],
@@ -195,6 +196,17 @@ class Shop extends CI_Controller
                 'item_id' => $item['id']
             );
 
+            $inventorydata = array(
+                "item_id" => $item['id'],
+                "order_id" => $neworder,
+                "quantity" => $item['qty'],
+                "inventory_date" => date("Y-m-d H:i:s"),
+                "movement_flag" => 0
+            );
+
+            $updateItemStock = $this->shop_model->updateItemStock($item['id'],$item['qty']);
+            $newinventory = $this->shop_model->newInventoty($inventorydata);
+            // var_dump($newinventory);exit;
             $order_line = $this->shop_model->insert_order_line($orderdetails);
         }
         // print_r($order_line);

@@ -56,6 +56,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['shop/(:num)'] = 'shop';
 $route['shop/item/detail/(:num)'] = 'shop/item_detail/$1';
+$route['item/detail/(:num)'] = 'shop/item_detail/$1';
 
 $route['mycart'] = 'shop/cart_page';
 
@@ -72,6 +73,12 @@ $route['admin/login'] = "customer/admin_login";
 $route['admin/dashboard'] = "dashboard";
 $route['admin/items/categories'] = "dashboard/category_page";
 $route['admin/items/list'] = 'dashboard/items_page';
+<<<<<<< HEAD
 $route['admin/customer/list'] = 'dashboard/customer_list';
 
 $route['admin/items/create'] = 'dashboard/additem_page';
+=======
+$route['admin/orders/list'] = 'dashboard/order_page';
+
+
+>>>>>>> refs/remotes/origin/main

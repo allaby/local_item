@@ -271,4 +271,41 @@ class Shop extends CI_Controller
         }
     }
 
+
+    public function orderdetails(){
+        // var_dump($_REQUEST);exit;
+        $order_id = $_REQUEST['orderid'];
+        $orderlines = $this->shop_model->getOrderlines($order_id);
+        // print_r($orderlines);exit;
+        $output = '<table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Qté</th>
+            <th scope="col">Article</th>
+            <th scope="col">PU</th>
+            <th scope="col">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+        ';
+      foreach($orderlines as $orderline){
+        $output .= '
+        <tr>
+            <th scope="row">'.$orderline->quantity.'</th>
+            <td>'.$orderline->item_name.'</td>
+            <td>'.number_format($orderline->unit_price, 2, ',',' ').' €</td>
+            <td>'.number_format($orderline->subtotal, 2, ',',' ').' €</td>
+          </tr>
+        ';
+      }
+
+      $output .= '</tbody>
+      </table>';
+
+      echo $output;
+      exit;
+      
+    }
+
+
 }

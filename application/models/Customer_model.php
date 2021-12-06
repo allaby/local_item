@@ -14,7 +14,7 @@ class Customer_model extends CI_Model
         $this->db->select($this->user_table . '.*');
         $this->db->select($this->address_table . '.*');
         $this->db->select($this->role_table . '.role_id');
-        $this->db->join($this->address_table, $this->address_table . '.contact_id = ' . $this->user_table . '.contact_id','left');
+        $this->db->join($this->address_table, $this->address_table . '.contact_id = ' . $this->user_table . '.contact_id', 'left');
         $this->db->join($this->role_table, $this->role_table . '.role_id = ' . $this->user_table . '.role_id');
     }
 
@@ -107,4 +107,18 @@ class Customer_model extends CI_Model
         $this->loadsession($contact_id);
         return true;
     }
+
+    public function updateCustomer($data, $user)
+    {
+        $this->db->where($this->user_table . '.contact_id', $user);
+        $this->db->update($this->user_table, $data);
+        return true;
+    }
+
+    public function getCustomers(){
+        $this->db->select($this->user_table . '.*');
+        $this->db->where($this->user_table . '.role_id', 2);
+        return $this->db->get($this->user_table)->result();
+    }
+
 }

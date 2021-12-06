@@ -30,6 +30,18 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/backoffice/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     <!-- Toastr -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/backoffice/plugins/toastr/toastr.min.css">
+    <style>
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
     <script src="<?= base_url() ?>assets/fontoffice/js/jquery.js"></script>
     <!-- SweetAlert2 -->
     <script src="<?= base_url() ?>assets/backoffice/plugins/sweetalert2/sweetalert2.min.js"></script>
@@ -257,7 +269,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                                    <a href="<?= base_url() ?>admin/items/create" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Ajouter un article</p>
                                     </a>
@@ -274,7 +286,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="pages/widgets.html" class="nav-link <?= ($activemenu == 'customers') ? "active" : " " ?>">
+                            <a href="<?= base_url() ?>admin/customer/list" class="nav-link <?= ($activemenu == 'customers') ? "active" : " " ?>">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
                                     Clients

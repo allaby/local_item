@@ -9,13 +9,18 @@ class Customer extends CI_Controller
     {
         parent::__construct();
         $this->load->model("customer_model");
+        $this->load->model("shop_model");
     }
 
     public function dashboard()
     {
+        $userorder = $this->shop_model->getCustOrders($this->session->userdata('contact_id'));
+        // print_r($userorder);
+        // exit;
+        $data['myorders'] = $userorder;
         $data['page_title'] = "Suivie de commande - " . self::SITE_NAME;
-        $this->load->view('templates/font/header');
-        $this->load->view('customer/dashboard');
+        $this->load->view('templates/font/header',$data);
+        $this->load->view('customer/dashboard',$data);
         $this->load->view('templates/font/footer');
     }
 
@@ -127,6 +132,42 @@ class Customer extends CI_Controller
         // var_dump(password_hash('azerty123', PASSWORD_DEFAULT));exit;
         $data['page_title'] = "Connexion - Admin - ". self::SITE_NAME;
         $this->load->view('admin/admin_login', $data);
+    }
+
+    public function changpass(){
+        // print_r($_REQUEST);
+        $old_pass = $_REQUEST['old_pass'];
+        $new_pass = $_REQUEST['new_pass'];
+        $conf_pass = $_REQUEST['conf_pass'];
+        if(empty($old_pass) || empty($new_pass) || empty($conf_pass)){
+            echo "false||Remplissez tous les champs svp";
+            die;
+        }else if($conf_pass != $old_pass){
+            echo "false||Les nouveaux mot de passe de correspondent pas";
+            die;
+        }
+        // echo "ok";
+        $userdetails = $this->customer_model->getContact($this->session->userdata("contact_id"));
+        // print_r($userdetails);exit;
+        if(password_verify($old_pass, $userdetails['password'])){
+            $passdata = array(
+                'password' => password_hash($new_pass, PASSWORD_DEFAULT)
+            );
+
+            $updatpass = $this->customer_model->updateCustomer($passdata, $this->session->userdata('contact_id'));
+            // var_dump($updatpass);exit;
+            if($updatpass){
+                echo 'true||Mot de passe mis è jour';
+                exit;
+            }else{
+                echo 'false||Errur veillez reessayer SVP';
+                exit;
+            }
+
+        }else{
+            echo "false||Vous aviez entrer un moveau mot de passe";
+            die;
+        }
     }
 
 

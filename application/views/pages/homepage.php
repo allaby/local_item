@@ -145,8 +145,8 @@
                                         <li>
                                             <a href="#"><i class="icon-user"></i></a>
                                             <ul>
-                                                <li><a href="account.html">Mon Compte</a></li>
-                                                <li><a href="wishlist.html">Wishlist</a></li>
+                                                <li><a href="<?= base_url() ?>myaccount/dashboard">Mon Compte</a></li>
+                                                <li><a href="javascript:void(0)">Wishlist</a></li>
                                                 <li><a href="<?= base_url() ?>myaccount/logout">Se deconnecter</a></li>
                                             </ul>
                                         </li>
@@ -346,7 +346,7 @@
                                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
                                             </div>
                                             <div class="btn-wrapper animated">
-                                                <a href="shop.html" class="theme-btn-1 btn btn-effect-1 text-uppercase">Explore Products</a>
+                                                <a href="<?= base_url() ?>shop" class="theme-btn-1 btn btn-effect-1 text-uppercase">Explore Products</a>
                                             </div>
                                         </div>
                                     </div>
@@ -372,8 +372,8 @@
                                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
                                             </div>
                                             <div class="btn-wrapper animated">
-                                                <a href="shop.html" class="theme-btn-1 btn btn-effect-1 text-uppercase">Explore Products</a>
-                                                <a href="about.html" class="btn btn-transparent btn-effect-3 text-uppercase">LEARN MORE</a>
+                                                <a href="<?= base_url() ?>shop" class="theme-btn-1 btn btn-effect-1 text-uppercase">Explore Products</a>
+                                                <a href="javascript:void(0)" class="btn btn-transparent btn-effect-3 text-uppercase">LEARN MORE</a>
                                             </div>
                                         </div>
                                     </div>
@@ -385,7 +385,7 @@
                         </div>
                     </div>
                 </div>
-                <!--  -->
+
             </div>
         </div>
         <!-- SLIDER AREA END -->
@@ -455,7 +455,7 @@
         <!-- BANNER AREA END -->
 
         <!-- PRODUCT TAB AREA START (product-item-3) -->
-        <div class="ltn__product-tab-area ltn__product-gutter pt-85 pb-70">
+        <!-- <div class="ltn__product-tab-area ltn__product-gutter pt-85 pb-70">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -475,7 +475,6 @@
                             <div class="tab-pane fade active show" id="liton_tab_3_1">
                                 <div class="ltn__product-tab-content-inner">
                                     <div class="row ltn__tab-product-slider-one-active slick-arrow-1">
-                                        <!-- ltn__product-item -->
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -567,7 +566,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- ltn__product-item -->
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -659,7 +657,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- ltn__product-item -->
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -751,7 +748,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- ltn__product-item -->
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -842,7 +838,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- ltn__product-item -->
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -934,7 +929,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- ltn__product-item -->
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -1026,14 +1020,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--  -->
                                     </div>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="liton_tab_3_2">
                                 <div class="ltn__product-tab-content-inner">
                                     <div class="row ltn__tab-product-slider-one-active slick-arrow-1">
-                                        <!-- ltn__product-item -->
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -1125,7 +1117,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- ltn__product-item -->
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -1217,7 +1208,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- ltn__product-item -->
+                                        
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -1309,7 +1300,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- ltn__product-item -->
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -1400,7 +1390,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- ltn__product-item -->
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -1492,7 +1481,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- ltn__product-item -->
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -1584,14 +1572,12 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--  -->
                                     </div>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="liton_tab_3_3">
                                 <div class="ltn__product-tab-content-inner">
                                     <div class="row ltn__tab-product-slider-one-active slick-arrow-1">
-                                        <!-- ltn__product-item -->
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -1683,7 +1669,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- ltn__product-item -->
+                                        
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -1775,7 +1761,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- ltn__product-item -->
+                                        
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -1867,7 +1853,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- ltn__product-item -->
+                                        
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -1958,7 +1944,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- ltn__product-item -->
+                                        
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -2050,7 +2036,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- ltn__product-item -->
+                                        
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -2142,14 +2128,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--  -->
+                                        
                                     </div>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="liton_tab_3_4">
                                 <div class="ltn__product-tab-content-inner">
                                     <div class="row ltn__tab-product-slider-one-active slick-arrow-1">
-                                        <!-- ltn__product-item -->
+                                        
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -2241,7 +2227,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- ltn__product-item -->
+                                        
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -2333,7 +2319,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- ltn__product-item -->
+                                        
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -2425,7 +2411,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- ltn__product-item -->
+                                        
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -2516,7 +2502,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- ltn__product-item -->
+                                        
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -2608,7 +2594,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- ltn__product-item -->
+                                        
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -2700,14 +2686,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--  -->
+                                        
                                     </div>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="liton_tab_3_5">
                                 <div class="ltn__product-tab-content-inner">
                                     <div class="row ltn__tab-product-slider-one-active slick-arrow-1">
-                                        <!-- ltn__product-item -->
+                                        
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -2799,7 +2785,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- ltn__product-item -->
+                                        
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -2891,7 +2877,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- ltn__product-item -->
+                                        
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -2983,7 +2969,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- ltn__product-item -->
+                                        
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -3074,7 +3060,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- ltn__product-item -->
+                                        
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -3166,7 +3152,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- ltn__product-item -->
+                                        
                                         <div class="col-lg-12">
                                             <div class="ltn__product-item ltn__product-item-3 text-center">
                                                 <div class="product-img">
@@ -3258,7 +3244,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--  -->
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -3266,7 +3252,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!-- PRODUCT TAB AREA END -->
 
         <!-- COUNTDOWN AREA START -->
@@ -3304,378 +3290,59 @@
                     </div>
                 </div>
                 <div class="row ltn__tab-product-slider-one-active--- slick-arrow-1">
-                    <!-- ltn__product-item -->
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-                        <div class="ltn__product-item ltn__product-item-3 text-left">
-                            <div class="product-img">
-                                <a href="product-details.html"><img src="<?= base_url() ?>assets/fontoffice/img/product/1.png" alt="#"></a>
-                                <div class="product-badge">
-                                    <ul>
-                                        <li class="sale-badge">New</li>
-                                    </ul>
+
+                    <?php foreach ($items as $item) : ?>
+
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+                            <div class="ltn__product-item ltn__product-item-3 text-left">
+                                <div class="product-img">
+                                    <a href="product-details.html"><img src="<?= base_url() ?>assets/fontoffice/img/product/1.png" alt="#"></a>
+                                    <div class="product-badge">
+                                        <ul>
+                                            <li class="sale-badge">New</li>
+                                        </ul>
+                                    </div>
+                                    <div class="product-hover-action">
+                                        <ul>
+                                            <li>
+                                                <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
+                                                    <i class="far fa-eye"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)" data-id="<?= $item->item_id ?>" title="Add to Cart" onclick="addTocart($(this).attr('data-id'), 1)">
+                                                    <i class="fas fa-shopping-cart"></i>
+                                                </a>
+                                            </li>
+                                            <?php if ($this->session->userdata('is_logged')) : ?>
+                                                <li>
+                                                    <a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
+                                                        <i class="far fa-heart"></i></a>
+                                                </li>
+                                            <?php endif; ?>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div class="product-hover-action">
-                                    <ul>
-                                        <li>
-                                            <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
-                                                <i class="far fa-eye"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="Add to Cart" data-toggle="modal" data-target="#add_to_cart_modal">
-                                                <i class="fas fa-shopping-cart"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                                <i class="far fa-heart"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-ratting">
-                                    <ul>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                        <li><a href="#"><i class="far fa-star"></i></a></li>
-                                    </ul>
-                                </div>
-                                <h2 class="product-title"><a href="product-details.html">Carrots Group Scal</a></h2>
-                                <div class="product-price">
-                                    <span>$32.00</span>
-                                    <del>$46.00</del>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ltn__product-item -->
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-                        <div class="ltn__product-item ltn__product-item-3 text-left">
-                            <div class="product-img">
-                                <a href="product-details.html"><img src="<?= base_url() ?>assets/fontoffice/img/product/2.png" alt="#"></a>
-                                <div class="product-hover-action">
-                                    <ul>
-                                        <li>
-                                            <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
-                                                <i class="far fa-eye"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="Add to Cart" data-toggle="modal" data-target="#add_to_cart_modal">
-                                                <i class="fas fa-shopping-cart"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                                <i class="far fa-heart"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-ratting">
-                                    <ul>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                        <li><a href="#"><i class="far fa-star"></i></a></li>
-                                    </ul>
-                                </div>
-                                <h2 class="product-title"><a href="product-details.html">Red Hot Tomato</a></h2>
-                                <div class="product-price">
-                                    <span>$25.00</span>
-                                    <del>$35.00</del>
+                                <div class="product-info">
+                                    <div class="product-ratting">
+                                        <ul>
+                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                            <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
+                                            <li><a href="#"><i class="far fa-star"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <h2 class="product-title"><a href="product-details.html"><?= $item->name ?></a></h2>
+                                    <div class="product-price">
+                                        <span><?= number_format($item->price_max, 2, ',', ' ') ?></span>
+                                        <!-- <del>$46.00</del> -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- ltn__product-item -->
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-                        <div class="ltn__product-item ltn__product-item-3 text-center">
-                            <div class="product-img">
-                                <a href="product-details.html"><img src="<?= base_url() ?>assets/fontoffice/img/product/3.png" alt="#"></a>
-                                <div class="product-badge">
-                                    <ul>
-                                        <li class="sale-badge">New</li>
-                                    </ul>
-                                </div>
-                                <div class="product-hover-action">
-                                    <ul>
-                                        <li>
-                                            <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
-                                                <i class="far fa-eye"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="Add to Cart" data-toggle="modal" data-target="#add_to_cart_modal">
-                                                <i class="fas fa-shopping-cart"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                                <i class="far fa-heart"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-ratting">
-                                    <ul>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                        <li><a href="#"><i class="far fa-star"></i></a></li>
-                                    </ul>
-                                </div>
-                                <h2 class="product-title"><a href="product-details.html">Orange Fresh Juice</a></h2>
-                                <div class="product-price">
-                                    <span>$75.00</span>
-                                    <del>$92.00</del>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ltn__product-item -->
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-                        <div class="ltn__product-item ltn__product-item-3 text-center">
-                            <div class="product-img">
-                                <a href="product-details.html"><img src="<?= base_url() ?>assets/fontoffice/img/product/4.png" alt="#"></a>
-                                <div class="product-badge">
-                                    <ul>
-                                        <li class="sale-badge">New</li>
-                                    </ul>
-                                </div>
-                                <div class="product-hover-action">
-                                    <ul>
-                                        <li>
-                                            <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
-                                                <i class="far fa-eye"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="Add to Cart" data-toggle="modal" data-target="#add_to_cart_modal">
-                                                <i class="fas fa-shopping-cart"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                                <i class="far fa-heart"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-ratting">
-                                    <ul>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                        <li><a href="#"><i class="far fa-star"></i></a></li>
-                                    </ul>
-                                </div>
-                                <h2 class="product-title"><a href="product-details.html">Poltry Farm Meat</a></h2>
-                                <div class="product-price">
-                                    <span>$78.00</span>
-                                    <del>$85.00</del>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ltn__product-item -->
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-                        <div class="ltn__product-item ltn__product-item-3 text-center">
-                            <div class="product-img">
-                                <a href="product-details.html"><img src="<?= base_url() ?>assets/fontoffice/img/product/5.png" alt="#"></a>
-                                <div class="product-badge">
-                                    <ul>
-                                        <li class="sale-badge">New</li>
-                                    </ul>
-                                </div>
-                                <div class="product-hover-action">
-                                    <ul>
-                                        <li>
-                                            <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
-                                                <i class="far fa-eye"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="Add to Cart" data-toggle="modal" data-target="#add_to_cart_modal">
-                                                <i class="fas fa-shopping-cart"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                                <i class="far fa-heart"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-ratting">
-                                    <ul>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                        <li><a href="#"><i class="far fa-star"></i></a></li>
-                                    </ul>
-                                </div>
-                                <h2 class="product-title"><a href="product-details.html">Fresh Butter Cake</a></h2>
-                                <div class="product-price">
-                                    <span>$150.00</span>
-                                    <del>$180.00</del>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ltn__product-item -->
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-                        <div class="ltn__product-item ltn__product-item-3 text-center">
-                            <div class="product-img">
-                                <a href="product-details.html"><img src="<?= base_url() ?>assets/fontoffice/img/product/6.png" alt="#"></a>
-                                <div class="product-badge">
-                                    <ul>
-                                        <li class="sale-badge">New</li>
-                                    </ul>
-                                </div>
-                                <div class="product-hover-action">
-                                    <ul>
-                                        <li>
-                                            <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
-                                                <i class="far fa-eye"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="Add to Cart" data-toggle="modal" data-target="#add_to_cart_modal">
-                                                <i class="fas fa-shopping-cart"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                                <i class="far fa-heart"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-ratting">
-                                    <ul>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                        <li><a href="#"><i class="far fa-star"></i></a></li>
-                                    </ul>
-                                </div>
-                                <h2 class="product-title"><a href="product-details.html">Orange Sliced Mix</a></h2>
-                                <div class="product-price">
-                                    <span>$150.00</span>
-                                    <del>$180.00</del>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ltn__product-item -->
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-                        <div class="ltn__product-item ltn__product-item-3 text-center">
-                            <div class="product-img">
-                                <a href="product-details.html"><img src="<?= base_url() ?>assets/fontoffice/img/product/7.png" alt="#"></a>
-                                <div class="product-badge">
-                                    <ul>
-                                        <li class="sale-badge">New</li>
-                                    </ul>
-                                </div>
-                                <div class="product-hover-action">
-                                    <ul>
-                                        <li>
-                                            <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
-                                                <i class="far fa-eye"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="Add to Cart" data-toggle="modal" data-target="#add_to_cart_modal">
-                                                <i class="fas fa-shopping-cart"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                                <i class="far fa-heart"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-ratting">
-                                    <ul>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                        <li><a href="#"><i class="far fa-star"></i></a></li>
-                                    </ul>
-                                </div>
-                                <h2 class="product-title"><a href="product-details.html">Orange Fresh Juice</a></h2>
-                                <div class="product-price">
-                                    <span>$75.00</span>
-                                    <del>$92.00</del>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- ltn__product-item -->
-                    <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-                        <div class="ltn__product-item ltn__product-item-3 text-center">
-                            <div class="product-img">
-                                <a href="product-details.html"><img src="<?= base_url() ?>assets/fontoffice/img/product/8.png" alt="#"></a>
-                                <div class="product-badge">
-                                    <ul>
-                                        <li class="sale-badge">New</li>
-                                    </ul>
-                                </div>
-                                <div class="product-hover-action">
-                                    <ul>
-                                        <li>
-                                            <a href="#" title="Quick View" data-toggle="modal" data-target="#quick_view_modal">
-                                                <i class="far fa-eye"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="Add to Cart" data-toggle="modal" data-target="#add_to_cart_modal">
-                                                <i class="fas fa-shopping-cart"></i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" title="Wishlist" data-toggle="modal" data-target="#liton_wishlist_modal">
-                                                <i class="far fa-heart"></i></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="product-info">
-                                <div class="product-ratting">
-                                    <ul>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                        <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                        <li><a href="#"><i class="far fa-star"></i></a></li>
-                                    </ul>
-                                </div>
-                                <h2 class="product-title"><a href="product-details.html">Poltry Farm Meat</a></h2>
-                                <div class="product-price">
-                                    <span>$78.00</span>
-                                    <del>$85.00</del>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--  -->
+                    <?php endforeach; ?>
+
                 </div>
             </div>
         </div>
@@ -3784,7 +3451,7 @@
                             </div>
                         </div>
                     </div>
-                    <!--  -->
+
                 </div>
             </div>
         </div>
@@ -3956,71 +3623,8 @@
                             </div>
                         </div>
                     </div>
-                    <!--  -->
+
                 </div>
             </div>
         </div>
         <!-- BLOG AREA END -->
-
-        <!-- FEATURE AREA START ( Feature - 3) -->
-        <div class="ltn__feature-area before-bg-bottom-2 mb--30--- plr--5">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="ltn__feature-item-box-wrap ltn__border-between-column white-bg">
-                            <div class="row">
-                                <div class="col-xl-3 col-md-6 col-12">
-                                    <div class="ltn__feature-item ltn__feature-item-8">
-                                        <div class="ltn__feature-icon">
-                                            <img src="<?= base_url() ?>assets/fontoffice/img/icons/icon-img/11.png" alt="#">
-                                        </div>
-                                        <div class="ltn__feature-info">
-                                            <h4>Curated Products</h4>
-                                            <p>Provide Curated Products for
-                                                all product over $100</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6 col-12">
-                                    <div class="ltn__feature-item ltn__feature-item-8">
-                                        <div class="ltn__feature-icon">
-                                            <img src="<?= base_url() ?>assets/fontoffice/img/icons/icon-img/12.png" alt="#">
-                                        </div>
-                                        <div class="ltn__feature-info">
-                                            <h4>Handmade</h4>
-                                            <p>We ensure the product quality
-                                                that is our main goal</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6 col-12">
-                                    <div class="ltn__feature-item ltn__feature-item-8">
-                                        <div class="ltn__feature-icon">
-                                            <img src="<?= base_url() ?>assets/fontoffice/img/icons/icon-img/13.png" alt="#">
-                                        </div>
-                                        <div class="ltn__feature-info">
-                                            <h4>Natural Food</h4>
-                                            <p>Return product within 3 days
-                                                for any product you buy</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-3 col-md-6 col-12">
-                                    <div class="ltn__feature-item ltn__feature-item-8">
-                                        <div class="ltn__feature-icon">
-                                            <img src="<?= base_url() ?>assets/fontoffice/img/icons/icon-img/14.png" alt="#">
-                                        </div>
-                                        <div class="ltn__feature-info">
-                                            <h4>Free home delivery</h4>
-                                            <p>We ensure the product quality
-                                                that you can trust easily</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- FEATURE AREA END -->

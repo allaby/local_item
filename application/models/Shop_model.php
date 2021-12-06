@@ -35,7 +35,10 @@ class Shop_model extends CI_Model
             return $this->db->get($this->item_table)->row_array();
         } else if ($limit == true and $start == true) {
             $this->db->limit($limit, $start);
+        } else if ($limit == true and $start == false) {
+            $this->db->limit($limit);
         }
+        $this->db->order_by($this->item_table . '.item_id', 'DESC');
         return $this->db->get($this->item_table)->result();
     }
 
@@ -60,11 +63,16 @@ class Shop_model extends CI_Model
         return true;
     }
 
-    public function getCat($category)
+    public function getCat($category = false)
     {
         $this->db->select($this->category_table . '.*');
-        $this->db->where($this->category_table . '.category_id', $category);
-        return $this->db->get($this->category_table)->row_array();
+        if ($category) {
+            $this->db->where($this->category_table . '.category_id', $category);
+            return $this->db->get($this->category_table)->row_array();
+        } else {
+            $this->db->order_by($this->category_table . '.category_id', 'DESC');
+            return $this->db->get($this->category_table)->result();
+        }
     }
 
 
@@ -98,15 +106,36 @@ class Shop_model extends CI_Model
         }
     }
 
-    public function checkcatnam($catname){
+    public function checkcatnam($catname)
+    {
         $this->db->select($this->category_table . '.*');
         $this->db->where($this->category_table . '.name', $catname);
         return $this->db->get($this->category_table)->num_rows();
     }
 
 
-    public function insertCat($data){
+    public function insertCat($data)
+    {
         $this->db->insert($this->category_table, $data);
         return true;
+    }
+
+
+    public function getCustOrders($contact_id)
+    {
+        $this->db->select($this->order_table . '.*');
+        $this->db->where($this->order_table . '.contact_id', $contact_id);
+        return $this->db->get($this->order_table)->result();
+    }
+
+
+    public function getOrderlines($order_id)
+    {
+        $this->db->select($this->order_detail_table . '.*');
+        $this->db->where($this->order_detail_table . '.order_id', $order_id);
+        $this->db->select($this->item_table . '.name as item_name');
+        $this->db->select($this->item_table . '.price_max as unit_price');
+        $this->db->join($this->item_table, $this->item_table . '.item_id = ' . $this->order_detail_table . '.item_id');
+        return $this->db->get($this->order_detail_table)->result();
     }
 }

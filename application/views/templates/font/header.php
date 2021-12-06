@@ -162,8 +162,8 @@
                                         <li>
                                             <a href="#"><i class="icon-user"></i></a>
                                             <ul>
-                                                <li><a href="account.html">Mon Compte</a></li>
-                                                <li><a href="wishlist.html">Wishlist</a></li>
+                                                <li><a href="<?= base_url() ?>myaccount/dashboard">Mon Compte</a></li>
+                                                <li><a href="javascript:void(0)">Wishlist</a></li>
                                                 <li><a href="<?= base_url() ?>myaccount/logout">Se deconnecter</a></li>
                                             </ul>
                                         </li>

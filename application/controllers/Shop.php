@@ -189,7 +189,7 @@ class Shop extends CI_Controller
 
         $cart = $this->cart->contents();
         foreach ($cart as $item) {
-            
+
             $orderdetails = array(
                 'quantity' => $item['qty'],
                 'subtotal' => $item['subtotal'],
@@ -205,7 +205,7 @@ class Shop extends CI_Controller
                 "movement_flag" => 0
             );
 
-            $updateItemStock = $this->shop_model->updateItemStock($item['id'],$item['qty']);
+            $updateItemStock = $this->shop_model->updateItemStock($item['id'], $item['qty']);
             $newinventory = $this->shop_model->newInventoty($inventorydata);
             // var_dump($newinventory);exit;
             $order_line = $this->shop_model->insert_order_line($orderdetails);
@@ -229,63 +229,66 @@ class Shop extends CI_Controller
         $data['itemdetails'] = $itemdetails;
         $data['relateditems'] = $relateditems;
         // print_r($relateditems);exit;
-        $data['page_title'] = ucfirst($itemdetails['name'])." - " . self::SITE_NAME;
-        $this->load->view('templates/font/header',$data);
-        $this->load->view('shop/single_item',$data);
+        $data['page_title'] = ucfirst($itemdetails['name']) . " - " . self::SITE_NAME;
+        $this->load->view('templates/font/header', $data);
+        $this->load->view('shop/single_item', $data);
         $this->load->view('templates/font/footer');
     }
 
 
-    public function quickview(){
+    public function quickview()
+    {
         // var_dump($_REQUEST);
         $item_id = $_REQUEST['item'];
         $itemdetails = $this->shop_model->getItems($item_id);
 
         $image = $this->shop_model->getFeImg($item_id);
-        
+
         // print_r($itemdetails);exit;
         $itemdata = array(
             "item_id" => $itemdetails['item_id'],
             "ref" => $itemdetails['reference'],
             "name" => $itemdetails['name'],
-            "price" => number_format($itemdetails['price_max'],2,',',' '),
+            "price" => number_format($itemdetails['price_max'], 2, ',', ' '),
             "category" => $itemdetails['category_name']
         );
         echo json_encode($itemdata);
         exit;
     }
 
-    public function newcat(){
-        
+    public function newcat()
+    {
+
         $cat_name = $_REQUEST['cat_name'];
-        if(empty($_REQUEST['cat_name'])){
+        if (empty($_REQUEST['cat_name'])) {
             echo "false||Veillez entrer le nom de la catégorie";
             exit;
         }
         $checkcat_name = $this->shop_model->checkcatnam($cat_name);
         // print_r($checkcat_name);die;
-        if($checkcat_name == 0){
+        if ($checkcat_name == 0) {
             $catdata = array(
                 "name" => $cat_name,
                 "creation_date" => date("Y-m-d H:i:s"),
                 "is_active" => 1
             );
             $insertnewcat = $this->shop_model->insertCat($catdata);
-            if($insertnewcat){
+            if ($insertnewcat) {
                 echo "true||Catégorie ajoutée";
                 exit;
-            }else{
-                 echo "false||Une erreur est survenu lors de la création d'une catégorie, veillez réesayer";
+            } else {
+                echo "false||Une erreur est survenu lors de la création d'une catégorie, veillez réesayer";
                 exit;
             }
-        }else{
+        } else {
             echo "false||Ce nom existe déjà, veillez le changer";
             exit;
         }
     }
 
 
-    public function orderdetails(){
+    public function orderdetails()
+    {
         // var_dump($_REQUEST);exit;
         $order_id = $_REQUEST['orderid'];
         $orderlines = $this->shop_model->getOrderlines($order_id);
@@ -301,29 +304,98 @@ class Shop extends CI_Controller
         </thead>
         <tbody>
         ';
-      foreach($orderlines as $orderline){
-        $output .= '
+        foreach ($orderlines as $orderline) {
+            $output .= '
         <tr>
-            <th scope="row">'.$orderline->quantity.'</th>
-            <td>'.$orderline->item_name.'</td>
-            <td>'.number_format($orderline->unit_price, 2, ',',' ').' €</td>
-            <td>'.number_format($orderline->subtotal, 2, ',',' ').' €</td>
+            <th scope="row">' . $orderline->quantity . '</th>
+            <td>' . $orderline->item_name . '</td>
+            <td>' . number_format($orderline->unit_price, 2, ',', ' ') . ' €</td>
+            <td>' . number_format($orderline->subtotal, 2, ',', ' ') . ' €</td>
           </tr>
         ';
-      }
+        }
 
-      $output .= '</tbody>
+        $output .= '</tbody>
       </table>';
 
-      echo $output;
-      exit;
-      
+        echo $output;
+        exit;
     }
 
 
-    public function add_item(){
-        print_r($_FILES);
+    public function add_item()
+    {
+
+        $item_name = $_REQUEST['item_name'];
+        $item_price = $_REQUEST['item_price'];
+        $item_stock = $_REQUEST['item_stock'];
+        $item_cat = $_REQUEST['category'];
+        $item_tag = $_REQUEST['product_tag'];
+        $description = $_REQUEST['description'];
+
+        if (empty($item_price) or empty($item_name) or empty($item_stock) or empty($item_cat) or empty($description)) {
+            echo 'false||REmplissez tous les champs obligatoires';
+            exit;
+        }
+
+        $item_data = array(
+            'reference' => "PROD" . date('dmYhis'),
+            'name' => $item_name,
+            'stock' => $item_stock,
+            'price_max' => $item_price,
+            'description' => $description,
+            'creation_date' => date('Y-m-d H:i:s'),
+            'slug' => $item_tag,
+            'status' => 1,
+            'category_id' => $item_cat
+        );
+
+        $item_insert = $this->shop_model->newItem($item_data);
+
+
+
+        if ($_FILES) {
+
+            // $contact_id = $this->session->userdata('user_id');
+            $type = explode('.', $_FILES['item_img']['name']);
+            $type = $type[count($type) - 1];
+
+
+            $test = date('YmdHms');
+
+            $file_name = $test . "." . strtolower($type);
+
+
+            $file_tmp = $_FILES['item_img']['tmp_name'];
+            $target = './uploads/images/items/';
+            $url = './uploads/images/items/' . $file_name;
+            if (in_array($type, array('jpg', 'jpeg', 'png', 'gif'))) {
+                if (is_uploaded_file($_FILES['item_img']['tmp_name'])) {
+                    if (move_uploaded_file($_FILES['item_img']['tmp_name'], $url)) {
+                        $imgpath = $file_name;
+
+                        $img_data = array(
+                            'item_id' => $item_insert,
+                            'path' => $imgpath,
+                            'feath_img' => 1,
+                            'status' => 1
+                        );
+
+                        $insert_img = $this->shop_model->insertFeaImg($img_data);
+
+                        // print_r($item_insert);
+                        // die;
+                        if($insert_img){
+                            echo 'true||Article ajouté avec success';
+                            exit;
+                        }else{
+                            echo 'false||Un probleme est survenu lors de la création du produit, veillez reessayer plus tard';
+                            exit;
+                        }
+                    }
+                }
+            }
+            return '';
+        }
     }
-
-
 }

@@ -19,7 +19,9 @@ class Shop_model extends CI_Model
     {
         $this->db->select($this->item_table . '.*');
         $this->db->select($this->category_table . '.category_id as category_id, ' . $this->category_table . '.name as category_name, ');
+        $this->db->select($this->img_table . '.path as imgpath');
         $this->db->join($this->category_table, $this->category_table . '.category_id = ' . $this->item_table . '.category_id');
+        $this->db->join($this->img_table, $this->img_table.'.item_id = '.$this->item_table . '.item_id', 'left');
     }
 
     public function countItem()
@@ -168,6 +170,19 @@ class Shop_model extends CI_Model
     public function newInventoty($data)
     {
         $this->db->insert($this->inventory_table, $data);
+        return true;
+    }
+
+    public function newItem($data)
+    {
+        $this->db->insert($this->item_table, $data);
+        return $this->db->insert_id();
+    }
+
+
+    public function insertFeaImg($data)
+    {
+        $this->db->insert($this->img_table, $data);
         return true;
     }
 }

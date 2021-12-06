@@ -3296,7 +3296,11 @@
                         <div class="col-lg-3 col-md-4 col-sm-6 col-6">
                             <div class="ltn__product-item ltn__product-item-3 text-left">
                                 <div class="product-img">
-                                    <a href="product-details.html"><img src="<?= base_url() ?>assets/fontoffice/img/product/1.png" alt="#"></a>
+                                    <?php if ($item->imgpath) { ?>
+                                        <a href="<?= base_url() ?>shop/item/detail/<?= $item->item_id ?>"><img src="<?= base_url() ?>uploads/images/items/<?= $item->imgpath ?>" alt="#"></a>
+                                    <?php } else { ?>
+                                        <a href="<?= base_url() ?>shop/item/detail/<?= $item->item_id ?>"><img src="<?= base_url() ?>assets/fontoffice/img/product/1.png" alt="#"></a>
+                                    <?php } ?>
                                     <div class="product-badge">
                                         <ul>
                                             <li class="sale-badge">New</li>

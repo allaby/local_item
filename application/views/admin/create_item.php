@@ -71,7 +71,7 @@
 
                           <!-- /.card-body -->
                           <div class="card-footer">
-                              <button type="button" onclick="additem(); return false" class="btn btn-success">Créer</button>
+                              <button type="button" id="itembtn" onclick="additem(); return false" class="btn btn-success">Créer</button>
                           </div>
                           <!-- /.card-footer-->
                       </div>
@@ -132,12 +132,14 @@
 
   <script>
       function additem() {
+          $('#itembtn').prop('disabled', true);
+          $("#itembtn").html('Traitement en cours ...');
           var form = $("#newitem_form")[0];
           var form_data = new FormData(form);
           form_data.append("description", $('#summernote').summernote('code'));
-        //   console.log(form_data);
+          //   console.log(form_data);
           //   return false;
-        //   var textareaValue = $('#summernote').summernote('code');
+          //   var textareaValue = $('#summernote').summernote('code');
           $.ajax({
               url: "<?= base_url() ?>shop/add_item",
               method: "POST",
@@ -149,10 +151,21 @@
               //     $('#uploaded_image').html("<label class='text-success'>Image Uploading...</label>");
               // },
               success: function(msg) {
-                  console.log(msg)
-                //   if (msg == "false") {
-                //       alert("");
-                //   }
+                  //   console.log(msg)
+                  var val = msg.split("||");
+                  if (val[0] == "false") {
+                      toastr.error(val[1])
+                      $('#itembtn').prop('disabled', false);
+                      $("#itembtn").html('Créer un article');
+                  } else if (val[0] == "true") {
+                      $('#itembtn').prop('disabled', false);
+                      $("#itembtn").html('Créer un article');
+                      Toast.fire({
+                          icon: 'success',
+                          title: val[1]
+                      })
+                      window.location.href = "<?= base_url() ?>admin/items/list";
+                  }
               }
           });
       }

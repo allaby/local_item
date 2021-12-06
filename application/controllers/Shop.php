@@ -321,4 +321,9 @@ class Shop extends CI_Controller
     }
 
 
+    public function add_item(){
+        print_r($_FILES);
+    }
+
+
 }

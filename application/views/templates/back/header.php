@@ -30,6 +30,8 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/backoffice/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     <!-- Toastr -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/backoffice/plugins/toastr/toastr.min.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="<?= base_url() ?>assets/backoffice/plugins/summernote/summernote-bs4.min.css">
     <style>
         input::-webkit-outer-spin-button,
         input::-webkit-inner-spin-button {
@@ -54,6 +56,20 @@
             showConfirmButton: false,
             timer: 3000
         });
+    </script>
+    <!-- Summernote -->
+    <script src="<?= base_url() ?>assets/backoffice/plugins/summernote/summernote-bs4.min.js"></script>
+    <script>
+        $(function() {
+            // Summernote
+            $('#summernote').summernote()
+
+            // CodeMirror
+            CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+                mode: "htmlmixed",
+                theme: "monokai"
+            });
+        })
     </script>
 </head>
 

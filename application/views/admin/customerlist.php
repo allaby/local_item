@@ -41,7 +41,7 @@
                                  <td><?= $user->lastname ?></td>
                                  <td><?= $user->fisrtname ?></td>
                                  <td><?= $user->email ?></th>
-                                 <td><?= $user->creation_date ?></td>
+                                 <td><?= refomat_date($user->creation_date,'small-date') ?></td>
                              </tr>
                          <?php endforeach; ?>
                      </tbody>

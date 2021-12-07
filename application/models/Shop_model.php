@@ -10,6 +10,8 @@ class Shop_model extends CI_Model
     private $order_table = "orders";
     private $order_detail_table = "order_details";
     private $inventory_table = "inventories";
+    private $invoice_table = "invoices";
+    private $address_table = "addresses";
 
     private const ELEM_ACTIV = 1;
     private const ELEM_DESACTIV = 0;
@@ -21,7 +23,7 @@ class Shop_model extends CI_Model
         $this->db->select($this->category_table . '.category_id as category_id, ' . $this->category_table . '.name as category_name, ');
         $this->db->select($this->img_table . '.path as imgpath');
         $this->db->join($this->category_table, $this->category_table . '.category_id = ' . $this->item_table . '.category_id');
-        $this->db->join($this->img_table, $this->img_table.'.item_id = '.$this->item_table . '.item_id', 'left');
+        $this->db->join($this->img_table, $this->img_table . '.item_id = ' . $this->item_table . '.item_id', 'left');
     }
 
     public function countItem()
@@ -64,7 +66,7 @@ class Shop_model extends CI_Model
         $this->db->select($this->order_table . '.*');
         if ($order) {
             $this->db->where($this->order_table . '.order_id', $order);
-            return $this->db->get($this->order)->row_array();
+            return $this->db->get($this->order_table)->row_array();
         } else {
             $this->db->order_by($this->order_table . '.order_id', 'DESC');
             return $this->db->get($this->order_table)->result();
@@ -150,6 +152,7 @@ class Shop_model extends CI_Model
         $this->db->where($this->order_detail_table . '.order_id', $order_id);
         $this->db->select($this->item_table . '.name as item_name');
         $this->db->select($this->item_table . '.price_max as unit_price');
+        $this->db->select($this->item_table . '.reference as item_ref');
         $this->db->join($this->item_table, $this->item_table . '.item_id = ' . $this->order_detail_table . '.item_id');
         return $this->db->get($this->order_detail_table)->result();
     }
@@ -179,10 +182,30 @@ class Shop_model extends CI_Model
         return $this->db->insert_id();
     }
 
+    public function newInvoice($data)
+    {
+        $this->db->insert($this->invoice_table, $data);
+        return $this->db->insert_id();
+    }
+
 
     public function insertFeaImg($data)
     {
         $this->db->insert($this->img_table, $data);
         return true;
+    }
+    public function getInvoice($invoice_id)
+    {
+        $this->db->select($this->invoice_table . '.*');
+        $this->db->where($this->invoice_table . '.invoice_id', $invoice_id);
+        return $this->db->get($this->invoice_table)->row_array();
+    }
+
+
+    public function getAddbyID($address_id)
+    {
+        $this->db->select($this->address_table . '.*');
+        $this->db->where($this->address_table . '.address_id', $address_id);
+        return $this->db->get($this->address_table)->row_array();
     }
 }

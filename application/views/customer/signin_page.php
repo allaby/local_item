@@ -97,7 +97,7 @@
                     if (val[1] == "admin") {
                         window.location.href = "<?= base_url() ?>admin/dashboard"
                     } else if (val[1] == "customer") {
-                        window.location.href = "<?= base_url() ?>"
+                        window.location.href = "<?= base_url() ?>myaccount/dashboard";
                     }
                 }
             }

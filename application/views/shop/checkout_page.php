@@ -556,6 +556,8 @@
                         icon: 'success',
                         title: 'Votre commande à été soumise avec succes'
                     })
+                    // window.location.href = "<?= base_url() ?>customer/invoice/"+val[1];
+                    window.open('<?= base_url() ?>customer/invoice/'+val[1],'_blank');
                     window.location.href = "<?= base_url() ?>myaccount/dashboard";
                 }
             }

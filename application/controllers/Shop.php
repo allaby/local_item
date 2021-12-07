@@ -210,11 +210,26 @@ class Shop extends CI_Controller
             // var_dump($newinventory);exit;
             $order_line = $this->shop_model->insert_order_line($orderdetails);
         }
-        // print_r($order_line);
-        // exit;
+
         if ($order_line) {
-            $this->cart->destroy();
-            echo "true||";
+            $invoice_data = array(
+                'order_id' => $neworder,
+                'invoice_amount' => $this->cart->total(),
+                'invoice_date' => date("Y-m-d H:i:s"),
+                'creation_date' => date("Y-m-d H:i:s"),
+                'invoice_number' => "FAC" . date("YmdHis"),
+                'payment_status' => 1
+            );
+
+            $newinvoice = $this->shop_model->newInvoice($invoice_data);
+            // print_r($newinvoice);
+            // exit;
+            if ($newinvoice) {
+                $this->cart->destroy();
+                echo "true||" . $newinvoice;
+            } else {
+                echo "false||";
+            }
         }
         exit;
     }
@@ -397,5 +412,21 @@ class Shop extends CI_Controller
             }
             return '';
         }
+        print_r($_FILES);
+    }
+
+    public function viewinvoice($invoice_id)
+    {
+        
+        $invoice_data = $this->shop_model->getInvoice($invoice_id);
+        $orderdetails = $this->shop_model->getOrders($invoice_data['order_id']);
+        $orderaddress = $this->shop_model->getAddbyID($orderdetails['address_id']);
+        $orderlines = $this->shop_model->getOrderlines($invoice_data['order_id']);
+        // print_r($orderlines);die;
+        $data['invoicelines'] = $orderlines;
+        $data['order'] = $orderdetails;
+        $data['address'] = $orderaddress;
+        $data['invoice'] = $invoice_data; 
+        $this->load->view('shop/view_invoice', $data);
     }
 }

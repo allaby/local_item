@@ -15,7 +15,7 @@ class Customer extends CI_Controller
     public function dashboard()
     {
         $userorder = $this->shop_model->getCustOrders($this->session->userdata('contact_id'));
-        // print_r($userorder);
+        // print_r($this->session->userdata());
         // exit;
         $data['myorders'] = $userorder;
         $data['page_title'] = "Suivie de commande - " . self::SITE_NAME;

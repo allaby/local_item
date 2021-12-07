@@ -257,3 +257,13 @@ function refomat_date($date, $format = false)
 
     return $date . $time;
 }
+
+
+
+function phoneFormat($phone_number)
+{
+    if (preg_match('/^\+\d(\d{3})(\d{3})(\d{4})$/', $phone_number,  $matches)) {
+        $result = $matches[1] . '-' . $matches[2] . '-' . $matches[3];
+        return $result;
+    }
+}

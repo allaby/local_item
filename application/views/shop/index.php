@@ -64,10 +64,11 @@
                                         <div class="ltn__product-item ltn__product-item-3 text-center">
                                             <div class="product-img">
                                                 <?php if ($item->imgpath) { ?>
-                                                    <a href="<?= base_url() ?>shop/item/detail/<?= $item->item_id ?>"><img src="<?= base_url() ?>uploads/images/items/<?= $item->imgpath ?>" alt="#"></a>
+                                                    <a href="<?= base_url() ?>shop/item/detail/<?= $item->item_id ?>"><img src="<?= base_url() ?>uploads/images/item/<?= $item->imgpath ?>" alt="#"></a>
                                                 <?php } else { ?>
                                                     <a href="<?= base_url() ?>shop/item/detail/<?= $item->item_id ?>"><img src="<?= base_url() ?>assets/fontoffice/img/product/1.png" alt="#"></a>
-                                                    <?php } ?>
+                                                <?php } ?>
+                                                
                                                 <div class="product-badge">
                                                     <ul>
                                                         <li class="sale-badge">New</li>

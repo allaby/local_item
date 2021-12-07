@@ -67,6 +67,8 @@ $route['myaccount/dashboard'] = 'customer/dashboard';
 $route['customer/login'] = 'customer/signin_page';
 $route['customer/register'] = 'customer/signup_page';
 
+$route['customer/invoice/(:num)'] = 'shop/viewinvoice/$1';
+
 $route['myaccount/logout'] = 'customer/logout';
 
 $route['admin/login'] = "customer/admin_login";

@@ -189,7 +189,7 @@ class Shop extends CI_Controller
 
         $cart = $this->cart->contents();
         foreach ($cart as $item) {
-            
+
             $orderdetails = array(
                 'quantity' => $item['qty'],
                 'subtotal' => $item['subtotal'],
@@ -205,16 +205,31 @@ class Shop extends CI_Controller
                 "movement_flag" => 0
             );
 
-            $updateItemStock = $this->shop_model->updateItemStock($item['id'],$item['qty']);
+            $updateItemStock = $this->shop_model->updateItemStock($item['id'], $item['qty']);
             $newinventory = $this->shop_model->newInventoty($inventorydata);
             // var_dump($newinventory);exit;
             $order_line = $this->shop_model->insert_order_line($orderdetails);
         }
-        // print_r($order_line);
-        // exit;
+
         if ($order_line) {
-            $this->cart->destroy();
-            echo "true||";
+            $invoice_data = array(
+                'order_id' => $neworder,
+                'invoice_amount' => $this->cart->total(),
+                'invoice_date' => date("Y-m-d H:i:s"),
+                'creation_date' => date("Y-m-d H:i:s"),
+                'invoice_number' => "FAC" . date("YmdHis"),
+                'payment_status' => 1
+            );
+
+            $newinvoice = $this->shop_model->newInvoice($invoice_data);
+            // print_r($newinvoice);
+            // exit;
+            if ($newinvoice) {
+                $this->cart->destroy();
+                echo "true||" . $newinvoice;
+            } else {
+                echo "false||";
+            }
         }
         exit;
     }
@@ -229,63 +244,66 @@ class Shop extends CI_Controller
         $data['itemdetails'] = $itemdetails;
         $data['relateditems'] = $relateditems;
         // print_r($relateditems);exit;
-        $data['page_title'] = ucfirst($itemdetails['name'])." - " . self::SITE_NAME;
-        $this->load->view('templates/font/header',$data);
-        $this->load->view('shop/single_item',$data);
+        $data['page_title'] = ucfirst($itemdetails['name']) . " - " . self::SITE_NAME;
+        $this->load->view('templates/font/header', $data);
+        $this->load->view('shop/single_item', $data);
         $this->load->view('templates/font/footer');
     }
 
 
-    public function quickview(){
+    public function quickview()
+    {
         // var_dump($_REQUEST);
         $item_id = $_REQUEST['item'];
         $itemdetails = $this->shop_model->getItems($item_id);
 
         $image = $this->shop_model->getFeImg($item_id);
-        
+
         // print_r($itemdetails);exit;
         $itemdata = array(
             "item_id" => $itemdetails['item_id'],
             "ref" => $itemdetails['reference'],
             "name" => $itemdetails['name'],
-            "price" => number_format($itemdetails['price_max'],2,',',' '),
+            "price" => number_format($itemdetails['price_max'], 2, ',', ' '),
             "category" => $itemdetails['category_name']
         );
         echo json_encode($itemdata);
         exit;
     }
 
-    public function newcat(){
-        
+    public function newcat()
+    {
+
         $cat_name = $_REQUEST['cat_name'];
-        if(empty($_REQUEST['cat_name'])){
+        if (empty($_REQUEST['cat_name'])) {
             echo "false||Veillez entrer le nom de la catégorie";
             exit;
         }
         $checkcat_name = $this->shop_model->checkcatnam($cat_name);
         // print_r($checkcat_name);die;
-        if($checkcat_name == 0){
+        if ($checkcat_name == 0) {
             $catdata = array(
                 "name" => $cat_name,
                 "creation_date" => date("Y-m-d H:i:s"),
                 "is_active" => 1
             );
             $insertnewcat = $this->shop_model->insertCat($catdata);
-            if($insertnewcat){
+            if ($insertnewcat) {
                 echo "true||Catégorie ajoutée";
                 exit;
-            }else{
-                 echo "false||Une erreur est survenu lors de la création d'une catégorie, veillez réesayer";
+            } else {
+                echo "false||Une erreur est survenu lors de la création d'une catégorie, veillez réesayer";
                 exit;
             }
-        }else{
+        } else {
             echo "false||Ce nom existe déjà, veillez le changer";
             exit;
         }
     }
 
 
-    public function orderdetails(){
+    public function orderdetails()
+    {
         // var_dump($_REQUEST);exit;
         $order_id = $_REQUEST['orderid'];
         $orderlines = $this->shop_model->getOrderlines($order_id);
@@ -301,29 +319,42 @@ class Shop extends CI_Controller
         </thead>
         <tbody>
         ';
-      foreach($orderlines as $orderline){
-        $output .= '
+        foreach ($orderlines as $orderline) {
+            $output .= '
         <tr>
-            <th scope="row">'.$orderline->quantity.'</th>
-            <td>'.$orderline->item_name.'</td>
-            <td>'.number_format($orderline->unit_price, 2, ',',' ').' €</td>
-            <td>'.number_format($orderline->subtotal, 2, ',',' ').' €</td>
+            <th scope="row">' . $orderline->quantity . '</th>
+            <td>' . $orderline->item_name . '</td>
+            <td>' . number_format($orderline->unit_price, 2, ',', ' ') . ' €</td>
+            <td>' . number_format($orderline->subtotal, 2, ',', ' ') . ' €</td>
           </tr>
         ';
-      }
+        }
 
-      $output .= '</tbody>
+        $output .= '</tbody>
       </table>';
 
-      echo $output;
-      exit;
-      
+        echo $output;
+        exit;
     }
 
 
-    public function add_item(){
+    public function add_item()
+    {
         print_r($_FILES);
     }
 
-
+    public function viewinvoice($invoice_id)
+    {
+        
+        $invoice_data = $this->shop_model->getInvoice($invoice_id);
+        $orderdetails = $this->shop_model->getOrders($invoice_data['order_id']);
+        $orderaddress = $this->shop_model->getAddbyID($orderdetails['address_id']);
+        $orderlines = $this->shop_model->getOrderlines($invoice_data['order_id']);
+        // print_r($orderlines);die;
+        $data['invoicelines'] = $orderlines;
+        $data['order'] = $orderdetails;
+        $data['address'] = $orderaddress;
+        $data['invoice'] = $invoice_data; 
+        $this->load->view('shop/view_invoice', $data);
+    }
 }

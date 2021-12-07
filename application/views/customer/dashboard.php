@@ -138,12 +138,12 @@
                                                     </address>
                                                 </div>
                                                 <div class="col-md-6 col-12 learts-mb-30">
-                                                    <h4>Shipping Address <small><a href="#">edit</a></small></h4>
+                                                    <h4>Shipping Address <small><a href="javascript:void(0)" onclick="editShippingAddr()">edit</a></small></h4>
                                                     <address>
-                                                        <p><strong>Alex Tuntuni</strong></p>
-                                                        <p>1355 Market St, Suite 900 <br>
-                                                            San Francisco, CA 94103</p>
-                                                        <p>Mobile: (123) 456-7890</p>
+                                                        <p><strong><?= $this->session->userdata('firstname').' '.$this->session->userdata('lastname')?></strong></p>
+                                                        <p><?= $this->session->userdata('street').', '.$this->session->userdata('postalcode')?><br>
+                                                            <?= $this->session->userdata('city').', '.$this->session->userdata('country')?></p>
+                                                        <p>Téléphone: <?= phoneFormat($this->session->userdata('phone'))?></p>
                                                     </address>
                                                 </div>
                                             </div>
@@ -278,4 +278,11 @@
             }
         })
     }
+
+
+    function editShippingAddr(){
+        alert("ok")
+    }
+
+
 </script>

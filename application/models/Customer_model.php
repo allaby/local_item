@@ -7,6 +7,7 @@ class Customer_model extends CI_Model
     private $user_table = "contacts";
     private $address_table = "addresses";
     private $role_table = "roles";
+    private $template_table = "mail_template";
 
 
     public function get_cust()
@@ -91,6 +92,13 @@ class Customer_model extends CI_Model
         return $this->db->get($this->user_table)->row_array();
     }
 
+    public function chechEmail($email)
+    {
+        $this->get_cust();
+        $this->db->where($this->user_table . '.email', $email);
+        return $this->db->get($this->user_table)->num_rows();
+    }
+
 
     public function checkAddr($contact)
     {
@@ -115,10 +123,21 @@ class Customer_model extends CI_Model
         return true;
     }
 
-    public function getCustomers(){
+    public function getCustomers()
+    {
         $this->db->select($this->user_table . '.*');
         $this->db->where($this->user_table . '.role_id', 2);
         return $this->db->get($this->user_table)->result();
     }
 
+
+    public function getTemplateMail($template_id)
+    {
+        $this->db->select($this->template_table . '.*');
+        $this->db->where($this->template_table . '.template_id', $template_id);
+        return $this->db->get($this->template_table)->row_array();
+    }
+
+
+    
 }

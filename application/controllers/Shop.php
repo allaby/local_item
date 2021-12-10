@@ -13,7 +13,7 @@ class Shop extends CI_Controller
         parent::__construct();
         $this->load->model('shop_model');
         $this->load->model('customer_model');
-        $sender = $this->mailer->load();
+        // $sender = $this->mailer->load();
     }
 
 
@@ -225,6 +225,42 @@ class Shop extends CI_Controller
             // print_r($newinvoice);
             // exit;
             if ($newinvoice) {
+
+                //Send Wellcome Mail
+
+                //Getting mail template from db
+
+                $template = $this->customer_model->getTemplateMail(2);
+
+                $subjectmail = "Commande n° ";
+
+                $message = '';
+                $subject = '';
+                /* Replacing content from template */
+                $keywordsContent = array(
+                    "|FNAME|" => $this->session->userdata('firstname'),
+                    "{INVOICE_LINK}" => base_url().'customer/invoice/'.$newinvoice
+                );
+
+                $keywordsSubject = array(
+                    "{SUBJECT}" => $subjectmail
+                );
+
+                $message = str_replace(
+                    array_keys($keywordsContent),
+                    array_values($keywordsContent),
+                    $template['mail_body']
+                );
+                $subject = str_replace(array_keys($keywordsSubject), array_values($keywordsSubject), $template['mail_subject']);
+
+                $sender = sender($this->session->userdata('email'), $this->session->userdata('firstname'), $subject, $message);
+
+                // var_dump($sender);
+                // die;
+                // if ($sender)
+                //     echo "true||Compte créer";
+                // exit;
+
                 $this->cart->destroy();
                 echo "true||" . $newinvoice;
             } else {
@@ -400,10 +436,10 @@ class Shop extends CI_Controller
 
                         // print_r($item_insert);
                         // die;
-                        if($insert_img){
+                        if ($insert_img) {
                             echo 'true||Article ajouté avec success';
                             exit;
-                        }else{
+                        } else {
                             echo 'false||Un probleme est survenu lors de la création du produit, veillez reessayer plus tard';
                             exit;
                         }
@@ -417,7 +453,7 @@ class Shop extends CI_Controller
 
     public function viewinvoice($invoice_id)
     {
-        
+
         $invoice_data = $this->shop_model->getInvoice($invoice_id);
         $orderdetails = $this->shop_model->getOrders($invoice_data['order_id']);
         $orderaddress = $this->shop_model->getAddbyID($orderdetails['address_id']);
@@ -426,7 +462,7 @@ class Shop extends CI_Controller
         $data['invoicelines'] = $orderlines;
         $data['order'] = $orderdetails;
         $data['address'] = $orderaddress;
-        $data['invoice'] = $invoice_data; 
+        $data['invoice'] = $invoice_data;
         $this->load->view('shop/view_invoice', $data);
     }
 }

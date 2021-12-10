@@ -14,13 +14,14 @@ class Customer extends CI_Controller
 
     public function dashboard()
     {
+        $this->auth->isLoggedIn();
         $userorder = $this->shop_model->getCustOrders($this->session->userdata('contact_id'));
         // print_r($this->session->userdata());
         // exit;
         $data['myorders'] = $userorder;
         $data['page_title'] = "Suivie de commande - " . self::SITE_NAME;
-        $this->load->view('templates/font/header',$data);
-        $this->load->view('customer/dashboard',$data);
+        $this->load->view('templates/font/header', $data);
+        $this->load->view('customer/dashboard', $data);
         $this->load->view('templates/font/footer');
     }
 
@@ -55,10 +56,10 @@ class Customer extends CI_Controller
         $checkcontact = $this->customer_model->checkUserLogin($email, $password);
         // print_r($this->session->userdata());exit;
         if ($checkcontact) {
-            if($this->session->userdata('role') == 1){
+            if ($this->session->userdata('role') == 1) {
                 echo "true||admin";
                 exit;
-            }else if($this->session->userdata('role') == 2){
+            } else if ($this->session->userdata('role') == 2) {
                 echo "true||customer";
                 exit;
             }
@@ -103,18 +104,61 @@ class Customer extends CI_Controller
                     "creation_date" => date("Y-m-d H:i:s"),
                 );
 
-                $newcust = $this->customer_model->insertCust($contact_data);
-                // print_r($newcust);exit;
-                if ($newcust) {
-                    $address_data = array(
-                        "contact_id" => $newcust
-                    );
+                $checkcontact = $this->customer_model->chechEmail($email);
 
-                    $custaddre = $this->customer_model->newAddre($address_data);
-                    if ($custaddre)
-                        echo "true||Compte créer";
+                // var_dump($checkcontact);exit;
+
+                if ($checkcontact == 1) {
+                    echo "false||Cet utilisateur existe déjà, veillez réinitialiser votre mot de passe";
                     exit;
-                    // print_r($custaddre);exit;
+                } else {
+                    $newcust = $this->customer_model->insertCust($contact_data);
+                    // print_r($newcust);exit;
+                    if ($newcust) {
+                        $address_data = array(
+                            "contact_id" => $newcust
+                        );
+
+                        $custaddre = $this->customer_model->newAddre($address_data);
+
+
+                        //Send Wellcome Mail
+
+                        //Getting mail template from db
+
+                        $template = $this->customer_model->getTemplateMail(1);
+
+                        $subjectmail = "";
+
+                        $message = '';
+                        $subject = '';
+                        /* Replacing content from template */
+                        $keywordsContent = array(
+                            "|FNAME|" => ucfirst($firstname),
+                            "{LOGIN}" => $email,
+                            "{PASSWORD}" => $password,
+                        );
+
+                        $keywordsSubject = array(
+                            "{SUBJECT}" => $subjectmail
+                        );
+
+                        $message = str_replace(
+                            array_keys($keywordsContent),
+                            array_values($keywordsContent),
+                            $template['mail_body']
+                        );
+                        $subject = str_replace(array_keys($keywordsSubject), array_values($keywordsSubject), $template['mail_subject']);
+
+                        $sender = sender($email, $firstname, $subject, $message);
+
+                        // var_dump($sender);
+                        // die;
+                        if ($sender)
+                            echo "true||Compte créer";
+                        exit;
+                        // print_r($custaddre);exit;
+                    }
                 }
             }
         }
@@ -128,47 +172,46 @@ class Customer extends CI_Controller
     }
 
 
-    public function admin_login() {
+    public function admin_login()
+    {
         // var_dump(password_hash('azerty123', PASSWORD_DEFAULT));exit;
-        $data['page_title'] = "Connexion - Admin - ". self::SITE_NAME;
+        $data['page_title'] = "Connexion - Admin - " . self::SITE_NAME;
         $this->load->view('admin/admin_login', $data);
     }
 
-    public function changpass(){
+    public function changpass()
+    {
         // print_r($_REQUEST);
         $old_pass = $_REQUEST['old_pass'];
         $new_pass = $_REQUEST['new_pass'];
         $conf_pass = $_REQUEST['conf_pass'];
-        if(empty($old_pass) || empty($new_pass) || empty($conf_pass)){
+        if (empty($old_pass) || empty($new_pass) || empty($conf_pass)) {
             echo "false||Remplissez tous les champs svp";
             die;
-        }else if($conf_pass != $old_pass){
+        } else if ($conf_pass != $old_pass) {
             echo "false||Les nouveaux mot de passe de correspondent pas";
             die;
         }
         // echo "ok";
         $userdetails = $this->customer_model->getContact($this->session->userdata("contact_id"));
         // print_r($userdetails);exit;
-        if(password_verify($old_pass, $userdetails['password'])){
+        if (password_verify($old_pass, $userdetails['password'])) {
             $passdata = array(
                 'password' => password_hash($new_pass, PASSWORD_DEFAULT)
             );
 
             $updatpass = $this->customer_model->updateCustomer($passdata, $this->session->userdata('contact_id'));
             // var_dump($updatpass);exit;
-            if($updatpass){
+            if ($updatpass) {
                 echo 'true||Mot de passe mis è jour';
                 exit;
-            }else{
+            } else {
                 echo 'false||Errur veillez reessayer SVP';
                 exit;
             }
-
-        }else{
+        } else {
             echo "false||Vous aviez entrer un moveau mot de passe";
             die;
         }
     }
-
-
 }

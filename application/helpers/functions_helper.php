@@ -209,18 +209,18 @@ function refomat_date($date, $format = false)
     if (!empty($time) && $time != "")
         $time = ' à ' . $time;
     $months = array(
-        'Janvier',
-        'Février',
-        'Mars',
-        'Avril',
+        'Janv',
+        'Fév',
+        'Mar',
+        'Avr',
         'Mai',
         'Juin',
-        'Juillet',
+        'Juil',
         'Août',
-        'Septembre',
-        'Octobre',
-        'Novembre',
-        'Décembre'
+        'Sept',
+        'Oct',
+        'Nov',
+        'Déc'
     );
     $odldate = explode("-", $date);
     $small_date = "";
@@ -265,5 +265,67 @@ function phoneFormat($phone_number)
     if (preg_match('/^\+\d(\d{3})(\d{3})(\d{4})$/', $phone_number,  $matches)) {
         $result = $matches[1] . '-' . $matches[2] . '-' . $matches[3];
         return $result;
+    }
+}
+
+
+function sender($to, $to_name, $subject, $mailContent)
+{
+    $CI = &get_instance();
+    // load library 
+    $CI->load->library('sender');
+    $mail = $CI->sender->load();
+    // var_dump(APPPATH);exit;
+    try { 
+
+        //Recipients
+        $mail->setFrom('allabytell94em@gmail.com', 'Mailer');
+        $mail->addAddress($to, $to_name);     //Add a recipient
+        // $mail->addAddress('ellen@example.com');               //Name is optional
+        // $mail->addReplyTo('info@example.com', 'Information');
+        // $mail->addCC('cc@example.com');
+        // $mail->addBCC('bcc@example.com');
+
+        //Attachments
+        // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+        // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+
+        //Content
+        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->Subject = $subject;
+        $mail->Body    = $mailContent;
+        // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+        $mail->send();
+        return true;
+    } catch (Exception $e) {
+        echo $e->getMessage(); //Boring error messages from anything else!
+        return false;
+    }
+}
+
+
+function get_time_ago( $time )
+{
+    $time_difference = time() - $time;
+
+    if( $time_difference < 1 ) { return 'less than 1 second ago'; }
+    $condition = array( 12 * 30 * 24 * 60 * 60 =>  'an',
+                30 * 24 * 60 * 60       =>  'mois',
+                24 * 60 * 60            =>  'jour',
+                60 * 60                 =>  'heure',
+                60                      =>  'minute',
+                1                       =>  'seconde'
+    );
+
+    foreach( $condition as $secs => $str )
+    {
+        $d = $time_difference / $secs;
+
+        if( $d >= 1 )
+        {
+            $t = round( $d );
+            return 'il y a ' . $t . ' ' . $str . ( $t > 1 ? 's' : '' );
+        }
     }
 }

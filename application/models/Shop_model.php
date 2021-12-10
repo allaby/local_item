@@ -142,6 +142,7 @@ class Shop_model extends CI_Model
     {
         $this->db->select($this->order_table . '.*');
         $this->db->where($this->order_table . '.contact_id', $contact_id);
+        $this->db->order_by($this->order_table . '.creation_date','DESC');
         return $this->db->get($this->order_table)->result();
     }
 

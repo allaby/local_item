@@ -67,7 +67,7 @@
                                                         <?php foreach ($myorders as $order) : ?>
                                                             <tr>
                                                                 <td><?= $order->code ?></td>
-                                                                <td><?= ($order->creation_date) ?></td>
+                                                                <td><?= get_time_ago(strtotime($order->creation_date)) ?></td>
                                                                 <td>
                                                                     <?php if ($order->status == 1) {
                                                                         echo "PENDING";

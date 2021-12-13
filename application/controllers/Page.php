@@ -16,7 +16,7 @@ class Page extends CI_Controller {
         // $this->load->view('templates/font/header');
         $data['items'] = $this->shop_model->getitems(false, 8, false);
         // print_r($data['items']);exit;
-        $this->load->view('pages/homepage',$data);
+        $this->load->view('pages/homepage2',$data);
         $this->load->view('templates/font/footer');
     }
 
